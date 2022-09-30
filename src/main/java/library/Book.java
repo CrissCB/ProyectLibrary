@@ -15,6 +15,7 @@ public class Book extends javax.swing.JInternalFrame {
      */
     public Book() {
         initComponents();
+        setVisible(true);
     }
 
     /**
