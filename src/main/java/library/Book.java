@@ -15,7 +15,6 @@ public class Book extends javax.swing.JInternalFrame {
      */
     public Book() {
         initComponents();
-        setVisible(true);
     }
 
     /**
@@ -26,6 +25,9 @@ public class Book extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setClosable(true);
+        setVisible(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
