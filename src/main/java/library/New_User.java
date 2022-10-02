@@ -37,6 +37,10 @@ public class New_User extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("New User");
         setVisible(true);
 
@@ -82,8 +86,18 @@ public class New_User extends javax.swing.JInternalFrame {
         );
 
         bt_add.setText("Add");
+        bt_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_addActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
+        bt_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -128,6 +142,16 @@ public class New_User extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bt_addActionPerformed
+
+    private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_bt_cancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;

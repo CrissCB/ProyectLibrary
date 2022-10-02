@@ -3,11 +3,11 @@ package library;
 import javax.swing.JInternalFrame;
 
 public class Main extends javax.swing.JFrame {
-    
+
     public Main() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,9 +75,19 @@ public class Main extends javax.swing.JFrame {
         jMenu1.add(jSeparator2);
 
         searchUser.setText("Search user");
+        searchUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchUserActionPerformed(evt);
+            }
+        });
         jMenu1.add(searchUser);
 
         setUser.setText("Modify user");
+        setUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setUserActionPerformed(evt);
+            }
+        });
         jMenu1.add(setUser);
 
         jMenuBar1.add(jMenu1);
@@ -194,13 +204,26 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_rp_LoansActionPerformed
     //-------------------------------------------------------------------------------
     private void newUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserActionPerformed
-        JInternalFrame new_user = new New_User(this);
-        newUser.setEnabled(false);
+        JInternalFrame user = new New_User(this);
+        user.setEnabled(false);
     }//GEN-LAST:event_newUserActionPerformed
     //-------------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        
+        JInternalFrame delete_user = new Delete_User(this);
+        delete_user.setEnabled(false);
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search_user = new Search_User(this);
+        search_user.setEnabled(false);
+    }//GEN-LAST:event_searchUserActionPerformed
+
+    private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify_user = new Modify_User(this);
+        modify_user.setEnabled(false);
+    }//GEN-LAST:event_setUserActionPerformed
     //-------------------------------------------------------------------------------
     /**
      * @param args the command line arguments

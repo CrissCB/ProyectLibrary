@@ -31,11 +31,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search user"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchUserActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="setUser">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modify user"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setUserActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
