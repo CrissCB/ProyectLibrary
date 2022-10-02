@@ -52,6 +52,10 @@ public class Modify_User extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Password");
 
+        tf_ne_name.setEnabled(false);
+
+        ps_new_1.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,7 +76,7 @@ public class Modify_User extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tf_new_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -87,7 +91,7 @@ public class Modify_User extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        bt_modify.setText("Modify");
+        bt_modify.setText("Search");
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
