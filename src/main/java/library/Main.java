@@ -1,9 +1,13 @@
 package library;
 
+import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenuItem;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class Main extends javax.swing.JFrame {
-    
+
     public Main() {
         initComponents();
     }
@@ -12,6 +16,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dp_pane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         newUser = new javax.swing.JMenuItem();
@@ -55,6 +60,17 @@ public class Main extends javax.swing.JFrame {
         setTitle("Library");
         setBackground(new java.awt.Color(205, 243, 240));
 
+        javax.swing.GroupLayout dp_paneLayout = new javax.swing.GroupLayout(dp_pane);
+        dp_pane.setLayout(dp_paneLayout);
+        dp_paneLayout.setHorizontalGroup(
+            dp_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+        dp_paneLayout.setVerticalGroup(
+            dp_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 373, Short.MAX_VALUE)
+        );
+
         jMenu1.setText("Users");
 
         newUser.setText("New User");
@@ -75,9 +91,19 @@ public class Main extends javax.swing.JFrame {
         jMenu1.add(jSeparator2);
 
         searchUser.setText("Search user");
+        searchUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchUserActionPerformed(evt);
+            }
+        });
         jMenu1.add(searchUser);
 
         setUser.setText("Modify user");
+        setUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setUserActionPerformed(evt);
+            }
+        });
         jMenu1.add(setUser);
 
         jMenuBar1.add(jMenu1);
@@ -85,16 +111,36 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setText("Students");
 
         newStudent.setText("New Student");
+        newStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(newStudent);
 
         deleteStudent.setText("Delete Student");
+        deleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(deleteStudent);
         jMenu2.add(jSeparator1);
 
         searchStudent.setText("Search Student");
+        searchStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(searchStudent);
 
         setStudent.setText("Modify Student");
+        setStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(setStudent);
 
         jMenuBar1.add(jMenu2);
@@ -179,32 +225,110 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(dp_pane)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(dp_pane)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //-------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
 
     }//GEN-LAST:event_rp_LoansActionPerformed
-    //-------------------------------------------------------------------------------
+    //User classes
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void newUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserActionPerformed
-        JInternalFrame new_user = new New_User(this);
-        newUser.setEnabled(false);
+        JInternalFrame user = new New_User(this);
+        waterfall(user, evt);
     }//GEN-LAST:event_newUserActionPerformed
-    //-------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        
+        JInternalFrame delete = new Delete_User(this);
+        waterfall(delete, evt);
     }//GEN-LAST:event_deleteUserActionPerformed
-    //-------------------------------------------------------------------------------
-    /**
-     * @param args the command line arguments
-     */
+    //--------------------------------------------------------------------------
+    private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search = new Search_User(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchUserActionPerformed
+    //--------------------------------------------------------------------------
+    private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify = new Modify_User(this);
+        waterfall(modify, evt);
+    }//GEN-LAST:event_setUserActionPerformed
+    
+
+    //Student classes
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame stundent = new New_Student(this);
+        waterfall(stundent, evt);
+    }//GEN-LAST:event_newStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void deleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame delete = new Delete_Student(this);
+        waterfall(delete, evt);
+    }//GEN-LAST:event_deleteStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void searchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search = new Search_Student(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void setStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify = new Modify_Student(this);
+        waterfall(modify, evt);
+    }//GEN-LAST:event_setStudentActionPerformed
+    //-------------------------------------------------------------------------- 
+    //It serves so that the windows open in the form of a waterfall
+    private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
+        dp_pane.add(wf);
+        wf.moveToFront();
+        try {
+            wf.setSelected(true);
+        } catch (PropertyVetoException ex) {
+        }
+        int lastx = -20, lasty = -20;
+        for (JInternalFrame c : dp_pane.getAllFrames()) {
+            if (c == wf) {
+                continue;
+            }
+            if (c.getX() > lastx) {
+                lastx = c.getX();
+            }
+            if (c.getY() > lasty) {
+                lasty = c.getY();
+            }
+        }
+        wf.setLocation(lastx + 20, lasty + 20);
+        //----------------------------------------------------------------------
+        //Activation or deactivation of a button
+        ((JMenuItem) evt.getSource()).setEnabled(false);
+        wf.addInternalFrameListener(new InternalFrameAdapter() {
+            public void internalFrameClosed(InternalFrameEvent ev) {
+                ((JMenuItem) evt.getSource()).setEnabled(true);
+            }
+        });
+
+    }
+    //--------------------------------------------------------------------------
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -236,12 +360,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem deleteBook;
     private javax.swing.JMenuItem deleteMagazine;
     private javax.swing.JMenuItem deleteStudent;
     private javax.swing.JMenuItem deleteUser;
+    private javax.swing.JDesktopPane dp_pane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
