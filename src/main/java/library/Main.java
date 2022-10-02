@@ -1,17 +1,22 @@
 package library;
 
+import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenuItem;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dp_pane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         newUser = new javax.swing.JMenuItem();
@@ -54,6 +59,17 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Library");
         setBackground(new java.awt.Color(205, 243, 240));
+
+        javax.swing.GroupLayout dp_paneLayout = new javax.swing.GroupLayout(dp_pane);
+        dp_pane.setLayout(dp_paneLayout);
+        dp_paneLayout.setHorizontalGroup(
+            dp_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+        dp_paneLayout.setVerticalGroup(
+            dp_paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 373, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Users");
 
@@ -189,45 +205,80 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(dp_pane)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(dp_pane)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //-------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
 
     }//GEN-LAST:event_rp_LoansActionPerformed
-    //-------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void newUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserActionPerformed
         JInternalFrame user = new New_User(this);
-        user.setEnabled(false);
+        waterfall(user, evt);
     }//GEN-LAST:event_newUserActionPerformed
-    //-------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        JInternalFrame delete_user = new Delete_User(this);
-        delete_user.setEnabled(false);
+        JInternalFrame delete = new Delete_User(this);
+        waterfall(delete, evt);
     }//GEN-LAST:event_deleteUserActionPerformed
-
+    //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search_user = new Search_User(this);
-        search_user.setEnabled(false);
+        JInternalFrame search = new Search_User(this);
+        waterfall(search, evt);
     }//GEN-LAST:event_searchUserActionPerformed
-
+    //--------------------------------------------------------------------------
     private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify_user = new Modify_User(this);
-        modify_user.setEnabled(false);
+        JInternalFrame modify = new Modify_User(this);
+        waterfall(modify, evt);
     }//GEN-LAST:event_setUserActionPerformed
-    //-------------------------------------------------------------------------------
-    /**
-     * @param args the command line arguments
-     */
+    //-------------------------------------------------------------------------- 
+    //It serves so that the windows open in the form of a waterfall
+    private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
+        dp_pane.add(wf);
+        wf.moveToFront();
+        try {
+            wf.setSelected(true);
+        } catch (PropertyVetoException ex) {
+        }
+        int lastx = -20, lasty = -20;
+        for (JInternalFrame c : dp_pane.getAllFrames()) {
+            if (c == wf) {
+                continue;
+            }
+            if (c.getX() > lastx) {
+                lastx = c.getX();
+            }
+            if (c.getY() > lasty) {
+                lasty = c.getY();
+            }
+        }
+        wf.setLocation(lastx + 20, lasty + 20);
+        //----------------------------------------------------------------------
+        //Activation or deactivation of a button
+        ((JMenuItem) evt.getSource()).setEnabled(false);
+        wf.addInternalFrameListener(new InternalFrameAdapter() {
+            public void internalFrameClosed(InternalFrameEvent ev) {
+                ((JMenuItem) evt.getSource()).setEnabled(true);
+            }
+        });
+
+    }
+    //--------------------------------------------------------------------------
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -259,12 +310,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem deleteBook;
     private javax.swing.JMenuItem deleteMagazine;
     private javax.swing.JMenuItem deleteStudent;
     private javax.swing.JMenuItem deleteUser;
+    private javax.swing.JDesktopPane dp_pane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
