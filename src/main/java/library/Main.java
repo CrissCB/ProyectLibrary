@@ -111,16 +111,36 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setText("Students");
 
         newStudent.setText("New Student");
+        newStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(newStudent);
 
         deleteStudent.setText("Delete Student");
+        deleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(deleteStudent);
         jMenu2.add(jSeparator1);
 
         searchStudent.setText("Search Student");
+        searchStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(searchStudent);
 
         setStudent.setText("Modify Student");
+        setStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setStudentActionPerformed(evt);
+            }
+        });
         jMenu2.add(setStudent);
 
         jMenuBar1.add(jMenu2);
@@ -224,6 +244,8 @@ public class Main extends javax.swing.JFrame {
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
 
     }//GEN-LAST:event_rp_LoansActionPerformed
+    //User classes
+    //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
     private void newUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserActionPerformed
         JInternalFrame user = new New_User(this);
@@ -246,6 +268,34 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_User(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setUserActionPerformed
+    
+
+    //Student classes
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame stundent = new New_Student(this);
+        waterfall(stundent, evt);
+    }//GEN-LAST:event_newStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void deleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame delete = new Delete_Student(this);
+        waterfall(delete, evt);
+    }//GEN-LAST:event_deleteStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void searchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search = new Search_Student(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchStudentActionPerformed
+    //--------------------------------------------------------------------------
+    private void setStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStudentActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify = new Modify_Student(this);
+        waterfall(modify, evt);
+    }//GEN-LAST:event_setStudentActionPerformed
     //-------------------------------------------------------------------------- 
     //It serves so that the windows open in the form of a waterfall
     private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
