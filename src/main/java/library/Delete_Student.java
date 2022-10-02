@@ -33,8 +33,6 @@ public class Delete_Student extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Delete Student");
         setVisible(true);
 
