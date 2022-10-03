@@ -11,9 +11,9 @@ public class Loans extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     //--------------------------------------------------------------------------
-    public Loans(Main main) {
+    public Loans(Main m) {
         initComponents();
-        this.main = main;
+        this.main = m;
     }
 
     @SuppressWarnings("unchecked")

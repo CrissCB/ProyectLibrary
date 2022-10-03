@@ -12,9 +12,9 @@ public class Returns extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     //--------------------------------------------------------------------------
-    public Returns(Main main) {
+    public Returns(Main m) {
         initComponents();
-        this.main = main;
+        this.main = m;
     }
 
     @SuppressWarnings("unchecked")

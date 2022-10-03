@@ -12,9 +12,9 @@ public class Searching extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     //--------------------------------------------------------------------------
-    public Searching(Main main) {
+    public Searching(Main m) {
         initComponents();
-        this.main = main;
+        this.main = m;
     }
     //--------------------------------------------------------------------------
     @SuppressWarnings("unchecked")

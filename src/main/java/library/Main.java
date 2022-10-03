@@ -314,8 +314,8 @@ public class Main extends javax.swing.JFrame {
 
     private void loansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansActionPerformed
         // TODO add your handling code here:
-         JInternalFrame loans= new Loans(this);
-         waterfall(loans, evt);
+         JInternalFrame loan= new Loans(this);
+         waterfall(loan, evt);
     }//GEN-LAST:event_loansActionPerformed
 
     private void returnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsActionPerformed
