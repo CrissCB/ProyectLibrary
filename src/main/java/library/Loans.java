@@ -32,7 +32,7 @@ public class Loans extends javax.swing.JInternalFrame {
         jt_stock = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         code_article = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jdc_calendar = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         bt_cancel = new javax.swing.JButton();
         bt_loans = new javax.swing.JButton();
@@ -77,8 +77,8 @@ public class Loans extends javax.swing.JInternalFrame {
                     .addComponent(tf_article, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(jt_stock, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdc_calendar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jt_stock, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                             .addComponent(code_article, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(code_student, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(28, 28, 28)
@@ -110,7 +110,7 @@ public class Loans extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdc_calendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -197,7 +197,6 @@ public class Loans extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cb_student;
     private javax.swing.JTextField code_article;
     private javax.swing.JTextField code_student;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -205,6 +204,7 @@ public class Loans extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private com.toedter.calendar.JDateChooser jdc_calendar;
     private javax.swing.JTextField jt_stock;
     private javax.swing.JComboBox<String> tf_article;
     // End of variables declaration//GEN-END:variables
