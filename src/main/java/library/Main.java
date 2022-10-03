@@ -182,13 +182,28 @@ public class Main extends javax.swing.JFrame {
         jMenu5.setText("Circulation");
 
         loans.setText("Loans");
+        loans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansActionPerformed(evt);
+            }
+        });
         jMenu5.add(loans);
 
         returns.setText("Returns");
+        returns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnsActionPerformed(evt);
+            }
+        });
         jMenu5.add(returns);
         jMenu5.add(jSeparator5);
 
         searching.setText("Searching");
+        searching.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchingActionPerformed(evt);
+            }
+        });
         jMenu5.add(searching);
 
         jMenuBar1.add(jMenu5);
@@ -296,6 +311,25 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
+
+    private void loansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame loans= new Loans(this);
+         waterfall(loans, evt);
+    }//GEN-LAST:event_loansActionPerformed
+
+    private void returnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame returns= new Returns(this);
+        waterfall(returns, evt);
+        
+    }//GEN-LAST:event_returnsActionPerformed
+
+    private void searchingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search= new Searching(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchingActionPerformed
     //-------------------------------------------------------------------------- 
     //It serves so that the windows open in the form of a waterfall
     private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {

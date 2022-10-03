@@ -153,11 +153,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Loans"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loansActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="returns">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Returns"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnsActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
             </MenuItem>
@@ -165,6 +171,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Searching"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchingActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
