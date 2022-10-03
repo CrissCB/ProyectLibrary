@@ -29,8 +29,6 @@ public class Modify_Student extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Modify Student");
         setVisible(true);
 

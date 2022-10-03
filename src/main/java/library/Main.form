@@ -122,13 +122,19 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="newMagazine">
               <Properties>
-                <Property name="text" type="java.lang.String" value="newMagazine"/>
+                <Property name="text" type="java.lang.String" value="new Magazine"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newMagazineActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="deleteMagazine">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Magazine"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteMagazineActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
             </MenuItem>
@@ -136,11 +142,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search Magazine"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMagazineActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="setMagazine">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modify Magazine"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setMagazineActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

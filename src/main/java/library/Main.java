@@ -164,17 +164,37 @@ public class Main extends javax.swing.JFrame {
 
         jMenu4.setText("Magazines");
 
-        newMagazine.setText("newMagazine");
+        newMagazine.setText("new Magazine");
+        newMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(newMagazine);
 
         deleteMagazine.setText("Delete Magazine");
+        deleteMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(deleteMagazine);
         jMenu4.add(jSeparator4);
 
         searchMagazine.setText("Search Magazine");
+        searchMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(searchMagazine);
 
         setMagazine.setText("Modify Magazine");
+        setMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(setMagazine);
 
         jMenuBar1.add(jMenu4);
@@ -296,6 +316,30 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
+
+    private void newMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMagazineActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame magazine = new New_Magazine(this);
+        waterfall(magazine, evt);
+    }//GEN-LAST:event_newMagazineActionPerformed
+
+    private void deleteMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMagazineActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame delete = new Delete_Magazine(this);
+        waterfall(delete, evt);
+    }//GEN-LAST:event_deleteMagazineActionPerformed
+
+    private void searchMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMagazineActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search = new Search_Magazine(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchMagazineActionPerformed
+
+    private void setMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setMagazineActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify = new Modify_Magazine(this);
+        waterfall(modify, evt);
+    }//GEN-LAST:event_setMagazineActionPerformed
     //-------------------------------------------------------------------------- 
     //It serves so that the windows open in the form of a waterfall
     private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
