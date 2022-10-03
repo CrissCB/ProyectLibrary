@@ -3,13 +3,13 @@ package library;
 public class New_User extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
-    //------------------------------------
+    //--------------------------------------------------------------------------
     public New_User(Main main) {
         initComponents();
         setVisible(true);
         this.main = main;
     }
-    //------------------------------------
+    //--------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -147,7 +147,7 @@ public class New_User extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_bt_addActionPerformed
-
+    //--------------------------------------------------------------------------
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
         // TODO add your handling code here:
         dispose();
