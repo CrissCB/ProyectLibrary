@@ -46,6 +46,7 @@ public class Searching extends javax.swing.JInternalFrame {
 
         ta_area.setColumns(20);
         ta_area.setRows(5);
+        ta_area.setEnabled(false);
         jScrollPane1.setViewportView(ta_area);
 
         bt_ok.setText("Ok");
