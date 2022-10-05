@@ -1,14 +1,22 @@
 package library;
 
+
+import javax.swing.JOptionPane;
+
 public class New_User extends javax.swing.JInternalFrame {
+
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
+
     //--------------------------------------------------------------------------
-    public New_User(Main main) {
+    public New_User(Main main,Data dat) {
+        this.main = main;
+        this.data=dat;
         initComponents();
         setVisible(true);
-        this.main = main;
     }
+
     //--------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,6 +52,24 @@ public class New_User extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("New User");
         setVisible(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel4.setText("Id");
 
@@ -51,9 +77,18 @@ public class New_User extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Password");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("G:\\ProyectLibrary\\4.jpg")); // NOI18N
+        jt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_idActionPerformed(evt);
+            }
+        });
+
+        jt_name.setEnabled(false);
+
+        ps_user.setEnabled(false);
 
         bt_add.setText("Add");
+        bt_add.setEnabled(false);
         bt_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_addActionPerformed(evt);
@@ -152,15 +187,40 @@ public class New_User extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         // TODO add your handling code here:
-        
+        data.addUser(jt_id.getText(), jt_name.getText(), ps_user.getText());
+
     }//GEN-LAST:event_bt_addActionPerformed
     //--------------------------------------------------------------------------
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formInternalFrameClosed
+
+    
+    private void jt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_idActionPerformed
+        // TODO add your handling code here:
+        if (jt_id.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        } else if (data.search_user(jt_id.getText()) == true) {
+            JOptionPane.showMessageDialog(null, "Are you already registered");
+        } else {
+            jt_name.setEnabled(true);
+            ps_user.setEnabled(true);
+            bt_add.setEnabled(true);
+        }
+    }//GEN-LAST:event_jt_idActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here
+    }//GEN-LAST:event_formInternalFrameActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;

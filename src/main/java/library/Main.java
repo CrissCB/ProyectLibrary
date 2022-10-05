@@ -7,11 +7,15 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 public class Main extends javax.swing.JFrame {
-
+    //--------------------------------------------------------------------------
+    private Data data;
+    //--------------------------------------------------------------------------
     public Main() {
+        data = new Data();
+        data.loadUsers();
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,6 +63,11 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Library");
         setBackground(new java.awt.Color(205, 243, 240));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout dp_paneLayout = new javax.swing.GroupLayout(dp_pane);
         dp_pane.setLayout(dp_paneLayout);
@@ -257,19 +266,20 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //--------------------------------------------------------------------------
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
-
     }//GEN-LAST:event_rp_LoansActionPerformed
+    
     //User classes
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
     private void newUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserActionPerformed
-        JInternalFrame user = new New_User(this);
+        JInternalFrame user = new New_User(this, data);
         waterfall(user, evt);
     }//GEN-LAST:event_newUserActionPerformed
     //--------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        JInternalFrame delete = new Delete_User(this);
+        JInternalFrame delete = new Delete_User(this,data);
         waterfall(delete, evt);
+
     }//GEN-LAST:event_deleteUserActionPerformed
     //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
@@ -280,10 +290,9 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_User(this);
+        JInternalFrame modify = new Modify_User(this,data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setUserActionPerformed
-    
 
     //Student classes
     //--------------------------------------------------------------------------
@@ -311,26 +320,35 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
-
+    
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void loansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansActionPerformed
         // TODO add your handling code here:
-         JInternalFrame loan= new Loans(this);
-         waterfall(loan, evt);
+        JInternalFrame loan = new Loans(this);
+        waterfall(loan, evt);
     }//GEN-LAST:event_loansActionPerformed
-
+    //--------------------------------------------------------------------------
     private void returnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsActionPerformed
         // TODO add your handling code here:
-        JInternalFrame returns= new Returns(this);
+        JInternalFrame returns = new Returns(this);
         waterfall(returns, evt);
-        
-    }//GEN-LAST:event_returnsActionPerformed
 
+    }//GEN-LAST:event_returnsActionPerformed
+    //--------------------------------------------------------------------------
     private void searchingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search= new Searching(this);
+        JInternalFrame search = new Searching(this);
         waterfall(search, evt);
     }//GEN-LAST:event_searchingActionPerformed
+    //--------------------------------------------------------------------------
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        data.saveUsers();
+    }//GEN-LAST:event_formWindowClosing
+    
     //-------------------------------------------------------------------------- 
+    //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
     private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
         dp_pane.add(wf);
@@ -361,6 +379,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+    }
+    //--------------------------------------------------------------------------
+    public JMenuItem getLoans() {
+        return loans;
     }
     //--------------------------------------------------------------------------
     public static void main(String args[]) {

@@ -11,13 +11,15 @@ package library;
 public class Modify_User extends javax.swing.JInternalFrame {
 
     private Main main;
+    private Data data;
 
     /**
      * Creates new form Modify_User
      */
-    public Modify_User(Main main) {
+    public Modify_User(Main main,Data dat) {
         initComponents();
         this.main = main;
+        this.data=dat;
     }
 
     /**
