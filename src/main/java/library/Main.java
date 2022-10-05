@@ -20,28 +20,28 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         newUser = new javax.swing.JMenuItem();
-        deleteUser = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         searchUser = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         setUser = new javax.swing.JMenuItem();
+        deleteUser = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         newStudent = new javax.swing.JMenuItem();
-        deleteStudent = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         searchStudent = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         setStudent = new javax.swing.JMenuItem();
+        deleteStudent = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         newBook = new javax.swing.JMenuItem();
-        deleteBook = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         searchBook = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         setBook = new javax.swing.JMenuItem();
+        deleteBook = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         newMagazine = new javax.swing.JMenuItem();
-        deleteMagazine = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         searchMagazine = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         setMagazine = new javax.swing.JMenuItem();
+        deleteMagazine = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         loans = new javax.swing.JMenuItem();
         returns = new javax.swing.JMenuItem();
@@ -81,15 +81,6 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu1.add(newUser);
 
-        deleteUser.setText("Delete User");
-        deleteUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserActionPerformed(evt);
-            }
-        });
-        jMenu1.add(deleteUser);
-        jMenu1.add(jSeparator2);
-
         searchUser.setText("Search user");
         searchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +88,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenu1.add(searchUser);
+        jMenu1.add(jSeparator2);
 
         setUser.setText("Modify user");
         setUser.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +97,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenu1.add(setUser);
+
+        deleteUser.setText("Delete User");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
+        jMenu1.add(deleteUser);
 
         jMenuBar1.add(jMenu1);
 
@@ -118,15 +118,6 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu2.add(newStudent);
 
-        deleteStudent.setText("Delete Student");
-        deleteStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteStudentActionPerformed(evt);
-            }
-        });
-        jMenu2.add(deleteStudent);
-        jMenu2.add(jSeparator1);
-
         searchStudent.setText("Search Student");
         searchStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +125,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenu2.add(searchStudent);
+        jMenu2.add(jSeparator1);
 
         setStudent.setText("Modify Student");
         setStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -143,39 +135,67 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu2.add(setStudent);
 
+        deleteStudent.setText("Delete Student");
+        deleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteStudentActionPerformed(evt);
+            }
+        });
+        jMenu2.add(deleteStudent);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Books");
 
         newBook.setText("New Book");
+        newBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBookActionPerformed(evt);
+            }
+        });
         jMenu3.add(newBook);
 
-        deleteBook.setText("Delete Book");
-        jMenu3.add(deleteBook);
+        searchBook.setText("Search Book");
+        searchBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBookActionPerformed(evt);
+            }
+        });
+        jMenu3.add(searchBook);
         jMenu3.add(jSeparator3);
 
-        searchBook.setText("Search Book");
-        jMenu3.add(searchBook);
-
         setBook.setText("Modify Book");
+        setBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setBookActionPerformed(evt);
+            }
+        });
         jMenu3.add(setBook);
+
+        deleteBook.setText("Delete Book");
+        deleteBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBookActionPerformed(evt);
+            }
+        });
+        jMenu3.add(deleteBook);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Magazines");
 
-        newMagazine.setText("newMagazine");
+        newMagazine.setText("New Magazine");
         jMenu4.add(newMagazine);
-
-        deleteMagazine.setText("Delete Magazine");
-        jMenu4.add(deleteMagazine);
-        jMenu4.add(jSeparator4);
 
         searchMagazine.setText("Search Magazine");
         jMenu4.add(searchMagazine);
+        jMenu4.add(jSeparator4);
 
         setMagazine.setText("Modify Magazine");
         jMenu4.add(setMagazine);
+
+        deleteMagazine.setText("Delete Magazine");
+        jMenu4.add(deleteMagazine);
 
         jMenuBar1.add(jMenu4);
 
@@ -296,6 +316,30 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
+
+    private void newBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame book = new New_Book(this);
+        waterfall(book, evt);
+    }//GEN-LAST:event_newBookActionPerformed
+
+    private void searchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame search = new Search_Book(this);
+        waterfall(search, evt);
+    }//GEN-LAST:event_searchBookActionPerformed
+
+    private void setBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setBookActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame modify = new Modify_Book(this);
+        waterfall(modify, evt);
+    }//GEN-LAST:event_setBookActionPerformed
+
+    private void deleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame delete = new Delete_Book(this);
+        waterfall(delete, evt);
+    }//GEN-LAST:event_deleteBookActionPerformed
     //-------------------------------------------------------------------------- 
     //It serves so that the windows open in the form of a waterfall
     private void waterfall(JInternalFrame wf, java.awt.event.ActionEvent evt) {
