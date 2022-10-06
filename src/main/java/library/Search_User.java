@@ -37,8 +37,6 @@ public class Search_User extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Search User");
         setVisible(true);
 

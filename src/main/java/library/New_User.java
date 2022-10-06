@@ -48,8 +48,6 @@ public class New_User extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("New User");
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
