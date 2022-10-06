@@ -42,8 +42,6 @@ public class Modify_User extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setVisible(true);
 
         jLabel1.setText("Id");

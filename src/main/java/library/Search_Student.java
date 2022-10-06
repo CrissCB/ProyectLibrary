@@ -34,8 +34,6 @@ public class Search_Student extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Search Student");
         setVisible(true);
 

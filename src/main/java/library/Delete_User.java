@@ -39,8 +39,6 @@ public class Delete_User extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Remove User");
         setVisible(true);
 
