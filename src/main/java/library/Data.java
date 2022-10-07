@@ -19,11 +19,13 @@ import java.util.StringTokenizer;
 public class Data {
 
     protected ArrayList<String[]> users;
-
+    protected ArrayList<String[]> magazines;
+    //--------------------------------------------------------------------------
     public Data() {
         users = new ArrayList<>();
+        magazines = new ArrayList<>();
     }
-
+    //--------------------------------------------------------------------------
     public void loadUsers() {
         File file = new File("data/users.data");
         try {
@@ -31,7 +33,7 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[4];
+                String[] fields = new String[3];
                 for (int i = 0; i < 3; i++) {
                     fields[i] = tokens.nextToken();
                 }
@@ -99,4 +101,78 @@ public class Data {
         }
         return "";
     }
+    //--------------------------------------------------------------------------
+    public void loadMagazine() {
+        File file = new File("data/magazine.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[5];
+                for (int i = 0; i < 5; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                magazines.add(fields);
+            }
+        } catch (FileNotFoundException ex) {
+        }
+
+    }
+
+    public void saveMagazine() {
+        try {
+            FileWriter file = new FileWriter("data/magazine.data");
+            for (String[] magazine : magazines) {
+                String tokens = "";
+                for (String field : magazine) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    public void addMagazine(String numMagazine, String volume, String date, String stock) {
+        String fields[] = {numMagazine, volume, date, stock, "0"};
+        magazines.add(fields);
+    }
+
+    public ArrayList<String[]> getMagazines() {
+        return magazines;
+    }
+
+    public String getMagazines(String numMagazine) {
+        for (String[] fields : magazines) {
+            if (numMagazine.equals(fields[0])) {
+                return fields[0] + "\n"
+                        + fields[1] + "\n"
+                        + fields[2] + "\n"
+                        + fields[3] + "\n"
+                        + fields[4] + "\n";
+            }
+        }
+        return "";
+    }
+
+    public boolean search_Magazine(String numMagazine) {
+        for (String[] f_user : magazines) {
+            if (f_user[0].equals(numMagazine)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeMagazine(String numMagazine) {
+        for (String[] fields : magazines) {
+            //si encontro al usuario
+            if (numMagazine.equals(fields[0]))
+                magazines.remove(fields);
+        }
+    }
+    
 }

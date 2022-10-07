@@ -37,8 +37,9 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
         cb_icon = new javax.swing.JComboBox<>();
         pn_icon = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        bt_dinamic = new javax.swing.JButton();
+        bt_search = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
+        bt_modify = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -88,7 +89,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                     .addComponent(tf_numMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(tf_volume)
                     .addComponent(tf_date))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +113,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bt_dinamic.setText("Search");
+        bt_search.setText("Search");
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -121,24 +122,30 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
             }
         });
 
+        bt_modify.setText("Modify");
+        bt_modify.setEnabled(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(bt_dinamic, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap()
+                .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_dinamic)
-                    .addComponent(bt_cancel))
+                    .addComponent(bt_search)
+                    .addComponent(bt_cancel)
+                    .addComponent(bt_modify))
                 .addContainerGap())
         );
 
@@ -174,7 +181,8 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
-    private javax.swing.JButton bt_dinamic;
+    private javax.swing.JButton bt_modify;
+    private javax.swing.JButton bt_search;
     private javax.swing.JComboBox<String> cb_icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

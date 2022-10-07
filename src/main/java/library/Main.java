@@ -1,8 +1,13 @@
 package library;
 
+import java.awt.HeadlessException;
 import java.beans.PropertyVetoException;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -364,25 +369,28 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
-  
+    
+    //Book Classes
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     private void newBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookActionPerformed
         // TODO add your handling code here:
         JInternalFrame book = new New_Book(this);
         waterfall(book, evt);
     }//GEN-LAST:event_newBookActionPerformed
-
+    //--------------------------------------------------------------------------
     private void searchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookActionPerformed
         // TODO add your handling code here:
         JInternalFrame search = new Search_Book(this);
         waterfall(search, evt);
     }//GEN-LAST:event_searchBookActionPerformed
-
+    //--------------------------------------------------------------------------
     private void setBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setBookActionPerformed
         // TODO add your handling code here:
         JInternalFrame modify = new Modify_Book(this);
         waterfall(modify, evt);
     }//GEN-LAST:event_setBookActionPerformed
-
+    //--------------------------------------------------------------------------
     private void deleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookActionPerformed
         // TODO add your handling code here:
          JInternalFrame delete = new Delete_Book(this);
@@ -390,22 +398,22 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBookActionPerformed
     private void newMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame magazine = new New_Magazine(this);
+        JInternalFrame magazine = new New_Magazine(this, data);
         waterfall(magazine, evt);
     }//GEN-LAST:event_newMagazineActionPerformed
-
+    //--------------------------------------------------------------------------
     private void deleteMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame delete = new Delete_Magazine(this);
+        JInternalFrame delete = new Delete_Magazine(this, data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteMagazineActionPerformed
-
+    //--------------------------------------------------------------------------
     private void searchMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMagazineActionPerformed
         // TODO add your handling code here:
         JInternalFrame search = new Search_Magazine(this);
         waterfall(search, evt);
     }//GEN-LAST:event_searchMagazineActionPerformed
-
+    //--------------------------------------------------------------------------
     private void setMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setMagazineActionPerformed
         // TODO add your handling code here:
         JInternalFrame modify = new Modify_Magazine(this);
