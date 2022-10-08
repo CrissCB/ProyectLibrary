@@ -4,14 +4,20 @@
  */
 package library;
 
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
+
 
 public class Modify_Student extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
+    private String auxcod;
     //--------------------------------------------------------------------------
-    public Modify_Student(Main main) {
+    public Modify_Student(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
     //--------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
@@ -20,9 +26,9 @@ public class Modify_Student extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tf_new_code = new javax.swing.JTextField();
+        tf_code = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tf_ne_name = new javax.swing.JTextField();
+        tf_name = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         bt_modify = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -34,9 +40,15 @@ public class Modify_Student extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Code");
 
+        tf_code.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codeActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Name");
 
-        tf_ne_name.setEnabled(false);
+        tf_name.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -49,8 +61,8 @@ public class Modify_Student extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tf_new_code)
-                    .addComponent(tf_ne_name, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
+                    .addComponent(tf_code)
+                    .addComponent(tf_name, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -58,15 +70,21 @@ public class Modify_Student extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tf_new_code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tf_ne_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bt_modify.setText("Search");
+        bt_modify.setText("Modify");
+        bt_modify.setEnabled(false);
+        bt_modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modifyActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +142,52 @@ public class Modify_Student extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void tf_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codeActionPerformed
+        if (tf_code.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Student(tf_code.getText())) {
+            auxcod = tf_code.getText();
+            
+            int i = 0;
+            String[] aux = new String[2];
+            StringTokenizer inf = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
+            
+            while (inf.hasMoreElements()){
+                aux[i] = inf.nextToken();
+                i++;
+            }
+            
+            tf_name.setEnabled(true);
+            tf_name.setText(aux[1]);
+            bt_modify.setEnabled(true);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The student isn't registered");
+    }//GEN-LAST:event_tf_codeActionPerformed
+
+    private void bt_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modifyActionPerformed
+        if (tf_code.getText().trim().equals("") || tf_name.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else{
+            if (auxcod.equals(tf_code.getText()) || data.search_Student(tf_code.getText())) {
+                    data.removeStudent(tf_code.getText());
+                    data.addStudent(tf_code.getText(), tf_name.getText());
+                }else{
+                    data.removeStudent(auxcod);
+                    data.addStudent(tf_code.getText(), tf_name.getText());  
+                }
+            
+            JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") is modify"); 
+            bt_modify.setEnabled(false);
+            tf_name.setText("");
+            tf_name.setEnabled(false);
+            tf_code.setText("");
+        }
+        
+        
+    }//GEN-LAST:event_bt_modifyActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
@@ -132,7 +196,7 @@ public class Modify_Student extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField tf_ne_name;
-    private javax.swing.JTextField tf_new_code;
+    private javax.swing.JTextField tf_code;
+    private javax.swing.JTextField tf_name;
     // End of variables declaration//GEN-END:variables
 }

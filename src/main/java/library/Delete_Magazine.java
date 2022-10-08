@@ -15,13 +15,11 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     private Data data;
-    private String auxNumMagazine;
     //-------------------------------------------------------------------------- 
     public Delete_Magazine(Main main, Data data) {
         initComponents();
         this.main = main;
         this.data = data;
-        auxNumMagazine = "";
     }
 
     /**
@@ -42,15 +40,16 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         bt_cancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_numMagazine = new javax.swing.JTextField();
+        chb_numMagazine = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Delete Magazine");
         setVisible(true);
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -131,6 +130,12 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             }
         });
 
+        chb_numMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_numMagazineActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,17 +150,20 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chb_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chb_numMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,11 +175,17 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
-        data.removeMagazine(auxNumMagazine);
-        ta_info.setText("");
-        tf_numMagazine.setText("");
-        JOptionPane.showMessageDialog(null, "("+auxNumMagazine+") magazine removed successfully");
-        bt_delete.setEnabled(false);
+        if (data.search_Magazine(tf_numMagazine.getText())) {
+            data.removeMagazine(tf_numMagazine.getText());
+            JOptionPane.showMessageDialog(null, "("+tf_numMagazine.getText()+") magazine removed successfully");
+            ta_info.setText("");
+            tf_numMagazine.setText("");
+            bt_delete.setEnabled(false);
+            chb_numMagazine.setSelected(false);
+            tf_numMagazine.setEnabled(true);
+        }else
+            JOptionPane.showMessageDialog(null, "The magazine isn't registered");
+        
     }//GEN-LAST:event_bt_deleteActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
@@ -184,18 +198,30 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
         else if (data.search_Magazine(tf_numMagazine.getText())){
-            auxNumMagazine = tf_numMagazine.getText();
             bt_delete.setEnabled(true);
-            ta_info.setText(data.getMagazines(tf_numMagazine.getText()));
+            chb_numMagazine.setSelected(true);
+            tf_numMagazine.setEnabled(false);
+            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
             
         }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
     }//GEN-LAST:event_tf_numMagazineActionPerformed
 
+    private void chb_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_numMagazineActionPerformed
+        if (chb_numMagazine.isSelected()){
+            tf_numMagazine.setEnabled(false);
+            bt_delete.setEnabled(true);
+        }else{ 
+            tf_numMagazine.setEnabled(true);
+            bt_delete.setEnabled(false);
+        }
+    }//GEN-LAST:event_chb_numMagazineActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_delete;
+    private javax.swing.JCheckBox chb_numMagazine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

@@ -348,25 +348,25 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void newStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStudentActionPerformed
         // TODO add your handling code here:
-        JInternalFrame stundent = new New_Student(this);
+        JInternalFrame stundent = new New_Student(this, data);
         waterfall(stundent, evt);
     }//GEN-LAST:event_newStudentActionPerformed
     //--------------------------------------------------------------------------
     private void deleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStudentActionPerformed
         // TODO add your handling code here:
-        JInternalFrame delete = new Delete_Student(this);
+        JInternalFrame delete = new Delete_Student(this, data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteStudentActionPerformed
     //--------------------------------------------------------------------------
     private void searchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_Student(this);
+        JInternalFrame search = new Search_Student(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchStudentActionPerformed
     //--------------------------------------------------------------------------
     private void setStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStudentActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_Student(this);
+        JInternalFrame modify = new Modify_Student(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
     
@@ -410,13 +410,13 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void searchMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_Magazine(this);
+        JInternalFrame search = new Search_Magazine(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchMagazineActionPerformed
     //--------------------------------------------------------------------------
     private void setMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_Magazine(this);
+        JInternalFrame modify = new Modify_Magazine(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setMagazineActionPerformed
     //--------------------------------------------------------------------------

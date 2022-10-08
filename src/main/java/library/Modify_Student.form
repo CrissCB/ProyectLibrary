@@ -61,8 +61,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tf_new_code" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tf_ne_name" alignment="0" pref="144" max="32767" attributes="0"/>
+                      <Component id="tf_code" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tf_name" alignment="0" pref="144" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -73,12 +73,12 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_new_code" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_code" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_ne_name" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_name" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -91,14 +91,17 @@
             <Property name="text" type="java.lang.String" value="Code"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tf_new_code">
+        <Component class="javax.swing.JTextField" name="tf_code">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_codeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tf_ne_name">
+        <Component class="javax.swing.JTextField" name="tf_name">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -134,8 +137,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="bt_modify">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Search"/>
+            <Property name="text" type="java.lang.String" value="Modify"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_modifyActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_cancel">
           <Properties>

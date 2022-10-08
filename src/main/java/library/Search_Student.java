@@ -4,6 +4,8 @@
  */
 package library;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
@@ -12,11 +14,13 @@ public class Search_Student extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
 
     //--------------------------------------------------------------------------
-    public Search_Student(Main main) {
+    public Search_Student(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     //--------------------------------------------------------------------------
@@ -28,7 +32,7 @@ public class Search_Student extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         tf_code = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_info = new javax.swing.JTextArea();
         bt_search = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
 
@@ -39,12 +43,23 @@ public class Search_Student extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Code");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        tf_code.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codeActionPerformed(evt);
+            }
+        });
+
+        ta_info.setEditable(false);
+        ta_info.setColumns(20);
+        ta_info.setRows(5);
+        jScrollPane1.setViewportView(ta_info);
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +130,28 @@ public class Search_Student extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void tf_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codeActionPerformed
+        if (tf_code.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Student(tf_code.getText()))
+            ta_info.setText(data.getStudent(tf_code.getText()));
+        
+        else
+            JOptionPane.showMessageDialog(null, "The student isn't registered");
+    }//GEN-LAST:event_tf_codeActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        if (tf_code.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Student(tf_code.getText()))
+            ta_info.setText(data.getStudent(tf_code.getText()));
+        
+        else
+            JOptionPane.showMessageDialog(null, "The student isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
@@ -122,7 +159,7 @@ public class Search_Student extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_code;
     // End of variables declaration//GEN-END:variables
 }

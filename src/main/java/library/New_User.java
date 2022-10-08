@@ -202,7 +202,7 @@ public class New_User extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosed
 
-    
+   
     private void jt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_idActionPerformed
         // TODO add your handling code here:
         if (jt_id.getText().equals("")) {

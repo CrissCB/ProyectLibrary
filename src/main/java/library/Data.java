@@ -20,10 +20,12 @@ public class Data {
 
     protected ArrayList<String[]> users;
     protected ArrayList<String[]> magazines;
+    protected ArrayList<String[]> students;
     //--------------------------------------------------------------------------
     public Data() {
-        users = new ArrayList<>();
+        users     = new ArrayList<>();
         magazines = new ArrayList<>();
+        students  = new ArrayList<>();
     }
     //--------------------------------------------------------------------------
     public void loadUsers() {
@@ -145,14 +147,14 @@ public class Data {
         return magazines;
     }
 
-    public String getMagazines(String numMagazine) {
+    public String getMagazine(String numMagazine) {
         for (String[] fields : magazines) {
             if (numMagazine.equals(fields[0])) {
                 return fields[0] + "\n"
                         + fields[1] + "\n"
                         + fields[2] + "\n"
                         + fields[3] + "\n"
-                        + fields[4] + "\n";
+                        + fields[4];
             }
         }
         return "";
@@ -169,9 +171,83 @@ public class Data {
 
     public void removeMagazine(String numMagazine) {
         for (String[] fields : magazines) {
-            //si encontro al usuario
-            if (numMagazine.equals(fields[0]))
+            //si encontro el magazine
+            if (numMagazine.equals(fields[0])){
                 magazines.remove(fields);
+                break;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    public void loadStudent() {
+        File file = new File("data/student.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[2];
+                for (int i = 0; i < 2; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                students.add(fields);
+            }
+        } catch (FileNotFoundException ex) {
+        }
+
+    }
+
+    public void saveStudent() {
+        try {
+            FileWriter file = new FileWriter("data/student.data");
+            for (String[] student : students) {
+                String tokens = "";
+                for (String field : student) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    public void addStudent(String code, String name) {
+        String fields[] = {code, name};
+        students.add(fields);
+    }
+
+    public ArrayList<String[]> getStudents() {
+        return students;
+    }
+
+    public String getStudent(String code) {
+        for (String[] fields : students) {
+            if (code.equals(fields[0])) {
+                return fields[0] + "\n"
+                        + fields[1];
+            }
+        }
+        return "";
+    }
+
+    public boolean search_Student(String code) {
+        for (String[] f_student : students) {
+            if (f_student[0].equals(code)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeStudent(String code) {
+        for (String[] fields : students) {
+            //si encontro al estudiante
+            if (code.equals(fields[0])){
+                students.remove(fields);
+                break;
+            }
         }
     }
     

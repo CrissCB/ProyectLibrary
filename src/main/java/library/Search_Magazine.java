@@ -4,6 +4,8 @@
  */
 package library;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Crist
@@ -12,10 +14,12 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
     //--------------------------------------------------------------------------
-    public Search_Magazine(Main main) {
+    public Search_Magazine(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     /**
@@ -44,6 +48,12 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Num. Magazine");
 
+        tf_numMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_numMagazineActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -55,9 +65,9 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -74,6 +84,11 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
         );
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +131,7 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -150,6 +165,24 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
+
+    private void tf_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_numMagazineActionPerformed
+        if (tf_numMagazine.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        else if (data.search_Magazine(tf_numMagazine.getText()))
+            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
+        else
+            JOptionPane.showMessageDialog(null, "The magazine isn't registered");
+    }//GEN-LAST:event_tf_numMagazineActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        if (tf_numMagazine.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        else if (data.search_Magazine(tf_numMagazine.getText()))
+            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
+        else
+            JOptionPane.showMessageDialog(null, "The magazine isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
