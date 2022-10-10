@@ -76,7 +76,7 @@ public class Data {
             if (id.equals(fields[0])) {
                 return fields[0] + "\n"
                         + fields[1] + "\n"
-                        + fields[2] + "\n";
+                        + fields[2];
             }
         }
         return "";
@@ -91,17 +91,14 @@ public class Data {
         return false;
     }
 
-    public String removeUser(String id) {
+    public void removeUser(String id) {
         for (String[] fields : users) {
             //si encontro al usuario
             if (id.equals(fields[0])) {
                 users.remove(fields);
-                return fields[0] + "\n"
-                        + fields[1] + "\n"
-                        + fields[2] + "\n";
+                break;
             }
         }
-        return "";
     }
     //--------------------------------------------------------------------------
     public void loadMagazine() {
@@ -111,10 +108,10 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[5];
-                for (int i = 0; i < 5; i++) {
+                String[] fields = new String[6];
+                for (int i = 0; i < 6; i++)
                     fields[i] = tokens.nextToken();
-                }
+                
                 magazines.add(fields);
             }
         } catch (FileNotFoundException ex) {
@@ -138,8 +135,8 @@ public class Data {
         }
     }
 
-    public void addMagazine(String numMagazine, String volume, String date, String stock) {
-        String fields[] = {numMagazine, volume, date, stock, "0"};
+    public void addMagazine(String numMagazine, String volume, String date, String stock, String loan, String icon) {
+        String fields[] = {numMagazine, volume, date, stock, loan, icon};
         magazines.add(fields);
     }
 
@@ -154,7 +151,8 @@ public class Data {
                         + fields[1] + "\n"
                         + fields[2] + "\n"
                         + fields[3] + "\n"
-                        + fields[4];
+                        + fields[4] + "\n"
+                        + fields[5];
             }
         }
         return "";
@@ -186,8 +184,8 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[2];
-                for (int i = 0; i < 2; i++) {
+                String[] fields = new String[3];
+                for (int i = 0; i < 3; i++) {
                     fields[i] = tokens.nextToken();
                 }
                 students.add(fields);
@@ -213,8 +211,8 @@ public class Data {
         }
     }
 
-    public void addStudent(String code, String name) {
-        String fields[] = {code, name};
+    public void addStudent(String code, String name, String icon) {
+        String fields[] = {code, name, icon};
         students.add(fields);
     }
 
@@ -226,7 +224,8 @@ public class Data {
         for (String[] fields : students) {
             if (code.equals(fields[0])) {
                 return fields[0] + "\n"
-                        + fields[1];
+                        + fields[1]+ "\n"
+                        + fields[2];
             }
         }
         return "";

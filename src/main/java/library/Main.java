@@ -1,13 +1,8 @@
 package library;
 
-import java.awt.HeadlessException;
 import java.beans.PropertyVetoException;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -328,7 +323,6 @@ public class Main extends javax.swing.JFrame {
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         JInternalFrame delete = new Delete_User(this,data);
         waterfall(delete, evt);
-
     }//GEN-LAST:event_deleteUserActionPerformed
     //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed

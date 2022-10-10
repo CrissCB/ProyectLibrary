@@ -4,6 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +41,7 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_info = new javax.swing.JTextArea();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bt_search = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -77,10 +82,14 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 126, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
         );
 
         bt_search.setText("Search");
@@ -167,20 +176,60 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bt_cancelActionPerformed
 
     private void tf_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_numMagazineActionPerformed
+        
         if (tf_numMagazine.getText().trim().equals(""))
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
-        else if (data.search_Magazine(tf_numMagazine.getText()))
-            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
-        else
+        
+        else if (data.search_Magazine(tf_numMagazine.getText())){
+            int i = 0;
+            String[] inf = new String[6];
+            StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[5])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Num Magazine:   "+inf[0]+
+                            "\nVol. Magazine:    "+inf[1]+
+                            "\nData Magazine:   "+inf[2]+
+                            "\nStock Magazine: "+inf[3]+
+                            "\nLoan Magazine:   "+inf[4]);
+            
+        }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
     }//GEN-LAST:event_tf_numMagazineActionPerformed
 
     private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        
         if (tf_numMagazine.getText().trim().equals(""))
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
-        else if (data.search_Magazine(tf_numMagazine.getText()))
-            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
-        else
+        
+        else if (data.search_Magazine(tf_numMagazine.getText())){
+            int i = 0;
+            String[] inf = new String[6];
+            StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[5])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Num Magazine:   "+inf[0]+
+                            "\nVol. Magazine:    "+inf[1]+
+                            "\nData Magazine:   "+inf[2]+
+                            "\nStock Magazine: "+inf[3]+
+                            "\nLoan Magazine:   "+inf[4]);
+            
+        }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
     }//GEN-LAST:event_bt_searchActionPerformed
 
@@ -192,6 +241,7 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_numMagazine;

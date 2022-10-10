@@ -4,7 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
     private Main main;
     private Data data;
     private String auxnum;
+    private String inf_icon;
     //--------------------------------------------------------------------------
     public Modify_Magazine(Main main, Data data) {
         initComponents();
@@ -42,6 +46,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
         tf_date = new javax.swing.JTextField();
         cb_icon = new javax.swing.JComboBox<>();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tf_stock = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -71,8 +76,13 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
 
         tf_date.setEnabled(false);
 
-        cb_icon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_icon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cientifica", "Cocina", "Deportes", "Medicina", "Politica", "Otros" }));
         cb_icon.setEnabled(false);
+        cb_icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_iconActionPerformed(evt);
+            }
+        });
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -80,12 +90,18 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
         );
+
+        lb_icon.getAccessibleContext().setAccessibleName("lb_icon");
 
         jLabel4.setText("Stock");
 
@@ -117,10 +133,10 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_stock, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_numMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                 .addComponent(tf_volume)
-                                .addComponent(tf_date)))
+                                .addComponent(tf_date)
+                                .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,9 +164,10 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                     .addComponent(tf_loan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(pn_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         bt_cancel.setText("Cancel");
@@ -227,10 +244,10 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
         else if (data.search_Magazine(tf_numMagazine.getText())){
             auxnum = tf_numMagazine.getText();
             int i = 0;
-            String[] aux = new String[5];
+            String[] aux = new String[6];
             StringTokenizer inf = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
             
-            while (inf.hasMoreElements()){
+            while (inf.hasMoreElements() ){
                 aux[i] = inf.nextToken();
                 i++;
             }
@@ -244,6 +261,30 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
             tf_stock.setText(aux[3]);
             tf_loan.setEnabled(true);
             tf_loan.setText(aux[4]);
+            
+            cb_icon.setEnabled(true);
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(aux[5])
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            
+            if (aux[5].equals("Icon_Magazine/cientifica.png"))
+                cb_icon.setSelectedIndex(0);
+            
+            else if (aux[5].equals("Icon_Magazine/cocina.png")) 
+                cb_icon.setSelectedIndex(1);
+            
+            else if (aux[5].equals("Icon_Magazine/deportes.png"))
+                cb_icon.setSelectedIndex(2);
+            
+            else if(aux[5].equals("Icon_Magazine/medicina.png"))
+                cb_icon.setSelectedIndex(3);
+            
+            else if(aux[5].equals("Icon_Magazine/politica.png"))
+                cb_icon.setSelectedIndex(4);
+            
+            else
+                cb_icon.setSelectedIndex(5);
+           
         
         }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
@@ -274,11 +315,11 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                 if (auxnum.equals(tf_numMagazine.getText()) || data.search_Magazine(tf_numMagazine.getText())) {
                     data.removeMagazine(tf_numMagazine.getText());
                     data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
-                                tf_date.getText(), tf_stock.getText()); 
+                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon ); 
                 }else{
                     data.removeMagazine(auxnum);
                     data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
-                                tf_date.getText(), tf_stock.getText());  
+                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon );  
                 }
                 
                 
@@ -291,12 +332,55 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                 tf_stock.setText("");
                 tf_loan.setEnabled(false);
                 tf_loan.setText("");
+                cb_icon.setEnabled(false);
+                cb_icon.setSelectedIndex(0);
+                lb_icon.setIcon(null);
                 tf_numMagazine.setText("");
                 
             }else
                 JOptionPane.showMessageDialog(null, "Invalid Stock or Invalid Loan"); 
         }       
     }//GEN-LAST:event_bt_modifyActionPerformed
+
+    private void cb_iconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_iconActionPerformed
+        
+        if (cb_icon.getSelectedIndex() == 0) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/cientifica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/cientifica.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 1) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/cocina.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/cocina.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 2) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/deportes.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/deportes.png";
+            
+        } else if (cb_icon.getSelectedIndex() == 3) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/medicina.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/medicina.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 4) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/politica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/politica.png";
+            
+        }else{
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/other.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/other.png";
+        }
+    }//GEN-LAST:event_cb_iconActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,6 +394,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextField tf_date;
     private javax.swing.JTextField tf_loan;

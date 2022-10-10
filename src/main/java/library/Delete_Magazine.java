@@ -4,6 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,6 +39,7 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_info = new javax.swing.JTextArea();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         bt_delete = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -58,11 +63,15 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createSequentialGroup()
+                .addComponent(lb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createSequentialGroup()
+                .addComponent(lb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -81,7 +90,7 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(pn_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -150,9 +159,10 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chb_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tf_numMagazine)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,6 +193,7 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             bt_delete.setEnabled(false);
             chb_numMagazine.setSelected(false);
             tf_numMagazine.setEnabled(true);
+            lb_icon.setIcon(null);
         }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
         
@@ -201,7 +212,25 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             bt_delete.setEnabled(true);
             chb_numMagazine.setSelected(true);
             tf_numMagazine.setEnabled(false);
-            ta_info.setText(data.getMagazine(tf_numMagazine.getText()));
+            
+            int i = 0;
+            String[] inf = new String[6];
+            StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[5])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Num Magazine:   "+inf[0]+
+                            "\nVol. Magazine:    "+inf[1]+
+                            "\nData Magazine:   "+inf[2]+
+                            "\nStock Magazine: "+inf[3]+
+                            "\nLoan Magazine:   "+inf[4]);
             
         }else
             JOptionPane.showMessageDialog(null, "The magazine isn't registered");
@@ -226,6 +255,7 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_numMagazine;

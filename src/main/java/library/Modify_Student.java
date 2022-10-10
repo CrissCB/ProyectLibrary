@@ -4,7 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -13,6 +16,7 @@ public class Modify_Student extends javax.swing.JInternalFrame {
     private Main main;
     private Data data;
     private String auxcod;
+    private String inf_icon;
     //--------------------------------------------------------------------------
     public Modify_Student(Main main, Data data) {
         initComponents();
@@ -32,6 +36,9 @@ public class Modify_Student extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         bt_modify = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
+        cb_icon = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -113,6 +120,31 @@ public class Modify_Student extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        cb_icon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chico", "Chica", "Otro" }));
+        cb_icon.setEnabled(false);
+        cb_icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_iconActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,8 +152,12 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,6 +165,10 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -150,7 +190,7 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             auxcod = tf_code.getText();
             
             int i = 0;
-            String[] aux = new String[2];
+            String[] aux = new String[3];
             StringTokenizer inf = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
             
             while (inf.hasMoreElements()){
@@ -158,8 +198,14 @@ public class Modify_Student extends javax.swing.JInternalFrame {
                 i++;
             }
             
+            inf_icon = aux[2];
+            
             tf_name.setEnabled(true);
             tf_name.setText(aux[1]);
+            cb_icon.setEnabled(true);
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(aux[2])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
             bt_modify.setEnabled(true);
             
         }else
@@ -173,10 +219,10 @@ public class Modify_Student extends javax.swing.JInternalFrame {
         else{
             if (auxcod.equals(tf_code.getText()) || data.search_Student(tf_code.getText())) {
                     data.removeStudent(tf_code.getText());
-                    data.addStudent(tf_code.getText(), tf_name.getText());
+                    data.addStudent(tf_code.getText(), tf_name.getText(), inf_icon);
                 }else{
                     data.removeStudent(auxcod);
-                    data.addStudent(tf_code.getText(), tf_name.getText());  
+                    data.addStudent(tf_code.getText(), tf_name.getText(), inf_icon);  
                 }
             
             JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") is modify"); 
@@ -184,18 +230,45 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             tf_name.setText("");
             tf_name.setEnabled(false);
             tf_code.setText("");
+            cb_icon.setEnabled(false);
+            lb_icon.setIcon(null);
         }
         
         
     }//GEN-LAST:event_bt_modifyActionPerformed
 
+    private void cb_iconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_iconActionPerformed
+        if (cb_icon.getSelectedIndex() == 0) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Student/chico.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Student/chico.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 1) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Student/chica.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Student/chica.png";
+            
+        }else{
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Student/robot.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Student/robot.png";
+            
+        }
+    }//GEN-LAST:event_cb_iconActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_modify;
+    private javax.swing.JComboBox<String> cb_icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JTextField tf_code;
     private javax.swing.JTextField tf_name;
     // End of variables declaration//GEN-END:variables

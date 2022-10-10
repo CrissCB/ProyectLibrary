@@ -189,7 +189,7 @@ public class New_User extends javax.swing.JInternalFrame {
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         // TODO add your handling code here:
         data.addUser(jt_id.getText(), jt_name.getText(), ps_user.getText());
-
+        
     }//GEN-LAST:event_bt_addActionPerformed
     //--------------------------------------------------------------------------
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
