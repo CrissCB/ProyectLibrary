@@ -7,8 +7,10 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 public class Main extends javax.swing.JFrame {
+
     //--------------------------------------------------------------------------
     private Data data;
+
     //--------------------------------------------------------------------------
     public Main() {
         data = new Data();
@@ -313,7 +315,7 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
     }//GEN-LAST:event_rp_LoansActionPerformed
-    
+
     //User classes
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -323,19 +325,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_newUserActionPerformed
     //--------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        JInternalFrame delete = new Delete_User(this,data);
+        JInternalFrame delete = new Delete_User(this, data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteUserActionPerformed
     //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_User(this,data);
+        JInternalFrame search = new Search_User(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchUserActionPerformed
     //--------------------------------------------------------------------------
     private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_User(this,data);
+        JInternalFrame modify = new Modify_User(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setUserActionPerformed
 
@@ -365,7 +367,7 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
-    
+
     //Book Classes
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -389,7 +391,7 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void deleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookActionPerformed
         // TODO add your handling code here:
-         JInternalFrame delete = new Delete_Book(this);
+        JInternalFrame delete = new Delete_Book(this);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteBookActionPerformed
     private void newMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMagazineActionPerformed
@@ -475,10 +477,12 @@ public class Main extends javax.swing.JFrame {
         });
 
     }
+
     //--------------------------------------------------------------------------
     public JMenuItem getLoans() {
         return loans;
     }
+
     //--------------------------------------------------------------------------
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

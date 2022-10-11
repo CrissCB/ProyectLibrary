@@ -106,7 +106,7 @@ public class Delete_User extends javax.swing.JInternalFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        bt_remove.setText("Search");
+        bt_remove.setText("Delete");
         bt_remove.setEnabled(false);
         bt_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +196,7 @@ public class Delete_User extends javax.swing.JInternalFrame {
             }
             
             jl_ima.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(inf[4])
+                            .getImage(inf[3])
                             .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
             
             ta_info.setText("Id User:  "+inf[0]+

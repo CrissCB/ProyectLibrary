@@ -75,8 +75,9 @@ public class Data {
         for (String[] fields : users) {
             if (id.equals(fields[0])) {
                 return fields[0] + "\n"
-                        + fields[1] + "\n"
-                        + fields[2];
+                        + fields[1]+ "\n"
+                        + fields[2]+ "\n"
+                        + fields[3];
             }
         }
         return "";
