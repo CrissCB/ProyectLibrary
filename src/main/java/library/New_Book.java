@@ -53,6 +53,7 @@ public class New_Book extends javax.swing.JInternalFrame {
         lb_state = new javax.swing.JLabel();
         cb_state = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         lb_subjects = new javax.swing.JLabel();
         chb_codebook = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
@@ -76,7 +77,7 @@ public class New_Book extends javax.swing.JInternalFrame {
 
         lb_stock.setText("Stock");
 
-        cb_subjects.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_subjects.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencias Naturales", "Ingles", "Física", "Matemáticas", "Química", "Español", "Otros" }));
         cb_subjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_subjectsActionPerformed(evt);
@@ -85,7 +86,7 @@ public class New_Book extends javax.swing.JInternalFrame {
 
         lb_state.setText("State");
 
-        cb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -93,11 +94,11 @@ public class New_Book extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 76, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
         );
 
         lb_subjects.setText("Subjects");
@@ -113,7 +114,7 @@ public class New_Book extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -128,27 +129,28 @@ public class New_Book extends javax.swing.JInternalFrame {
                     .addComponent(lb_namebook)
                     .addComponent(lb_stock))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tf_namebook, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addComponent(tf_stock)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(chb_codebook)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_namebook, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(tf_stock)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chb_codebook)))
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chb_codebook, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lb_codebook)
-                        .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_codebook)
+                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chb_codebook))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_namebook)
@@ -235,8 +237,8 @@ public class New_Book extends javax.swing.JInternalFrame {
         if (tf_codebook.getText().trim().equals("")) 
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
-        else if (data.search_Magazine(tf_codebook.getText()))
-           JOptionPane.showMessageDialog(null, "The magazine is already registered");
+        else if (data.search_Book(tf_codebook.getText()))
+           JOptionPane.showMessageDialog(null, "The book is already registered");
         
         else{
             tf_namebook.setEnabled(true);
@@ -263,7 +265,7 @@ public class New_Book extends javax.swing.JInternalFrame {
             tf_stock.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "!!Complete the data¡¡");
             
-        }else if(data.search_Magazine(tf_codebook.getText()))
+        }else if(data.search_Book(tf_codebook.getText()))
             JOptionPane.showMessageDialog(null, "The book is already registered");
             
         else{
@@ -303,42 +305,42 @@ public class New_Book extends javax.swing.JInternalFrame {
     private void cb_subjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_subjectsActionPerformed
         // TODO add your handling code here:
         if (cb_subjects.getSelectedIndex() == 0) {
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/cienciasNaturales.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/cienciasNaturales.png";
             
         }else if (cb_subjects.getSelectedIndex() == 1) {
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/english.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/english.png";
             
         }else if (cb_subjects.getSelectedIndex() == 2) {
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/fisica.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/fisica.png";
             
         } else if (cb_subjects.getSelectedIndex() == 3) {
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/math.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/math.png";
             
         }else if (cb_subjects.getSelectedIndex() == 4) {
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/quimica.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/quimica.png";
             
         }else if(cb_subjects.getSelectedIndex() == 5){
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/spanish.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/spanish.png";
         }else if(cb_subjects.getSelectedIndex() == 6){
-            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/other.png")
                             .getScaledInstance(120, 80, Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/other.png";
@@ -356,6 +358,7 @@ public class New_Book extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lb_codebook;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JLabel lb_namebook;
     private javax.swing.JLabel lb_state;
     private javax.swing.JLabel lb_stock;
