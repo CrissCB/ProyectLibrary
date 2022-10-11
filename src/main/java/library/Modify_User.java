@@ -4,6 +4,12 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
@@ -12,14 +18,17 @@ public class Modify_User extends javax.swing.JInternalFrame {
 
     private Main main;
     private Data data;
+    private String auxcod;
+    private String inf_icon;
 
     /**
      * Creates new form Modify_User
      */
-    public Modify_User(Main main,Data dat) {
+    public Modify_User(Main main, Data dat) {
         initComponents();
         this.main = main;
-        this.data=dat;
+        this.data = dat;
+
     }
 
     /**
@@ -41,12 +50,20 @@ public class Modify_User extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         bt_modify = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
+        cb_user = new javax.swing.JComboBox<>();
+        jl_image = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setVisible(true);
 
         jLabel1.setText("Id");
+
+        tf_new_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_new_idActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Name");
 
@@ -71,7 +88,7 @@ public class Modify_User extends javax.swing.JInternalFrame {
                     .addComponent(tf_new_id)
                     .addComponent(tf_ne_name, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addComponent(ps_new_1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,19 +101,32 @@ public class Modify_User extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tf_ne_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ps_new_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bt_modify.setText("Search");
+        bt_modify.setText("Modify");
+        bt_modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modifyActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_cancelActionPerformed(evt);
+            }
+        });
+
+        cb_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chico", "Chica", "Otro" }));
+        cb_user.setEnabled(false);
+        cb_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_userActionPerformed(evt);
             }
         });
 
@@ -106,15 +136,26 @@ public class Modify_User extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(bt_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bt_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_modify)
                     .addComponent(bt_cancel))
@@ -127,9 +168,9 @@ public class Modify_User extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,15 +191,99 @@ public class Modify_User extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void cb_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_userActionPerformed
+        if (cb_user.getSelectedIndex() == 0) {
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                    .getImage("Icon_User/chico.png")
+                    .getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/chico.png";
+
+        } else if (cb_user.getSelectedIndex() == 1) {
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                    .getImage("Icon_User/chica.png")
+                    .getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/chica.png";
+
+        } else {
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                    .getImage("Icon_User/robot.png")
+                    .getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/robot.png";
+        }
+    }//GEN-LAST:event_cb_userActionPerformed
+
+    private void tf_new_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_new_idActionPerformed
+        // TODO add your handling code here:
+        if (tf_new_id.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_user(tf_new_id.getText())) {
+            auxcod = tf_new_id.getText();
+            
+            int i = 0;
+            String[] aux = new String[4];
+            StringTokenizer inf = new StringTokenizer(data.getUsers(tf_new_id.getText()), "\n");
+            
+            while (inf.hasMoreElements()){
+                aux[i] = inf.nextToken();
+                i++;
+            }            
+            inf_icon = aux[3];            
+            tf_ne_name.setEnabled(true);
+            tf_ne_name.setText(aux[1]);
+            ps_new_1.setEnabled(true);
+            ps_new_1.setText(aux[2]);
+            cb_user.setEnabled(true);
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(aux[3])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            bt_modify.setEnabled(true);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The user isn't registered");
+        
+    }//GEN-LAST:event_tf_new_idActionPerformed
+
+    private void bt_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modifyActionPerformed
+        // TODO add your handling code here:
+        if (tf_new_id.getText().trim().equals("") || tf_ne_name.getText().trim().equals("")
+                || ps_new_1.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else{
+            if (auxcod.equals(tf_new_id.getText()) || data.search_user(tf_new_id.getText())) {
+                    data.removeUser(tf_new_id.getText());
+                    data.addUser(tf_new_id.getText(), tf_ne_name.getText(),
+                            ps_new_1.getText(), inf_icon);
+                }else{
+                    data.removeUser(auxcod);
+                    data.addUser(tf_new_id.getText(), tf_ne_name.getText(),
+                            ps_new_1.getText(), inf_icon);
+                }
+            
+            JOptionPane.showMessageDialog(null, "("+tf_new_id.getText()+") is modify"); 
+            bt_modify.setEnabled(false);
+            tf_ne_name.setText("");
+            tf_ne_name.setEnabled(false);
+            tf_new_id.setText("");
+            ps_new_1.setEnabled(false);
+            ps_new_1.setText("");
+            cb_user.setEnabled(false);
+            jl_image.setIcon(null);
+        }
+    }//GEN-LAST:event_bt_modifyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_modify;
+    private javax.swing.JComboBox<String> cb_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jl_image;
     private javax.swing.JPasswordField ps_new_1;
     private javax.swing.JTextField tf_ne_name;
     private javax.swing.JTextField tf_new_id;

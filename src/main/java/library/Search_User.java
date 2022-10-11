@@ -4,18 +4,26 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
  */
 public class Search_User extends javax.swing.JInternalFrame {
     private Main main;
+    private Data data;
     /**
      * Creates new form Search_User
      */
-    public Search_User(Main main) {
+    public Search_User(Main main,Data dat) {
         initComponents();
         this.main = main;
+        this.data=dat;
     }
 
     /**
@@ -31,7 +39,8 @@ public class Search_User extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         tf_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_info = new javax.swing.JTextArea();
+        jl_ima = new javax.swing.JLabel();
         bt_search = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
 
@@ -48,10 +57,10 @@ public class Search_User extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        ta_info.setColumns(20);
+        ta_info.setRows(5);
+        ta_info.setEnabled(false);
+        jScrollPane1.setViewportView(ta_info);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,6 +74,8 @@ public class Search_User extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(27, 27, 27)
                         .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jl_ima, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -75,11 +86,18 @@ public class Search_User extends javax.swing.JInternalFrame {
                     .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_ima, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -94,13 +112,14 @@ public class Search_User extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +143,56 @@ public class Search_User extends javax.swing.JInternalFrame {
 
     private void tf_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idActionPerformed
         // TODO add your handling code here:
+        if (tf_id.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_user(tf_id.getText())){
+            int i = 0;
+            String[] inf = new String[4];
+            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }            
+            jl_ima.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[3])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Id User:  "+inf[0]+
+                            "\n Name User: "+inf[1]+
+                            "\n Password User: "+inf[2]);
+        
+        }else
+            JOptionPane.showMessageDialog(null, "The user isn't registered");
     }//GEN-LAST:event_tf_idActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        // TODO add your handling code here:
+        if (tf_id.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_user(tf_id.getText())){
+            int i = 0;
+            String[] inf = new String[4];
+            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            jl_ima.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[3])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Id User:  "+inf[0]+
+                            "\n Name User: "+inf[1]+
+                            "\n Password User: "+inf[2]);
+        
+        }else
+            JOptionPane.showMessageDialog(null, "The user isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -133,7 +201,8 @@ public class Search_User extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jl_ima;
+    private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_id;
     // End of variables declaration//GEN-END:variables
 }

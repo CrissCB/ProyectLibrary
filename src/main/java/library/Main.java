@@ -13,6 +13,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         data = new Data();
         data.loadUsers();
+        data.loadStudent();
+        data.loadMagazine();
         initComponents();
     }
 
@@ -327,7 +329,7 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_User(this);
+        JInternalFrame search = new Search_User(this,data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchUserActionPerformed
     //--------------------------------------------------------------------------
@@ -437,6 +439,8 @@ public class Main extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         data.saveUsers();
+        data.saveStudent();
+        data.saveMagazine();
     }//GEN-LAST:event_formWindowClosing
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------

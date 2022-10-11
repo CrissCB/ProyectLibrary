@@ -62,8 +62,8 @@ public class Data {
         }
     }
 
-    public void addUser(String id, String name, String pass) {
-        String fields[] = {id, name, pass};
+    public void addUser(String id, String name, String pass,String icon) {
+        String fields[] = {id, name, pass,icon};
         users.add(fields);
     }
 
