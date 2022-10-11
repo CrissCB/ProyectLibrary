@@ -4,20 +4,31 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Udenar
  */
 public class New_Book extends javax.swing.JInternalFrame {
     
+    private Data data;
     private Main main;
+    private String inf_icon;
 
     /**
      * Creates new form New_Book
      */
-    public New_Book(Main main) {
+    public New_Book(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
+        inf_icon ="Icon_Book/cienciasNaturales.png";
+        cb_subjects.setSelectedIndex(0);
+       
     }
 
    
@@ -37,12 +48,13 @@ public class New_Book extends javax.swing.JInternalFrame {
         lb_namebook = new javax.swing.JLabel();
         tf_namebook = new javax.swing.JTextField();
         lb_stock = new javax.swing.JLabel();
-        tb_stock = new javax.swing.JTextField();
+        tf_stock = new javax.swing.JTextField();
         cb_subjects = new javax.swing.JComboBox<>();
         lb_state = new javax.swing.JLabel();
         cb_state = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lb_subjects = new javax.swing.JLabel();
+        chb_codebook = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         bt_add = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -65,6 +77,11 @@ public class New_Book extends javax.swing.JInternalFrame {
         lb_stock.setText("Stock");
 
         cb_subjects.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_subjects.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_subjectsActionPerformed(evt);
+            }
+        });
 
         lb_state.setText("State");
 
@@ -83,7 +100,13 @@ public class New_Book extends javax.swing.JInternalFrame {
             .addGap(0, 76, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Subjects");
+        lb_subjects.setText("Subjects");
+
+        chb_codebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_codebookActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,7 +117,7 @@ public class New_Book extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addComponent(lb_subjects)
                             .addGap(18, 18, 18)
                             .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -106,9 +129,12 @@ public class New_Book extends javax.swing.JInternalFrame {
                     .addComponent(lb_stock))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tf_codebook, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addComponent(tf_namebook)
-                        .addComponent(tb_stock))
+                        .addComponent(tf_namebook, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                        .addComponent(tf_stock)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(chb_codebook)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -118,9 +144,11 @@ public class New_Book extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_codebook)
-                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chb_codebook, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb_codebook)
+                        .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_namebook)
@@ -128,14 +156,14 @@ public class New_Book extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_stock)
-                    .addComponent(tb_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(lb_subjects))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cb_state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,6 +172,11 @@ public class New_Book extends javax.swing.JInternalFrame {
         );
 
         bt_add.setText("Add");
+        bt_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_addActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +210,7 @@ public class New_Book extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,11 +232,118 @@ public class New_Book extends javax.swing.JInternalFrame {
 
     private void tf_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codebookActionPerformed
         // TODO add your handling code here:
+        if (tf_codebook.getText().trim().equals("")) 
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Magazine(tf_codebook.getText()))
+           JOptionPane.showMessageDialog(null, "The magazine is already registered");
+        
+        else{
+            tf_namebook.setEnabled(true);
+            tf_stock.setEnabled(true);
+            bt_add.setEnabled(true);
+            cb_subjects.setEnabled(true);
+            cb_state.setEnabled(true);
+            tf_codebook.setEnabled(false);
+            chb_codebook.setSelected(true);
+        }
     }//GEN-LAST:event_tf_codebookActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
+
+    private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
+        // TODO add your handling code here:
+        String aux = tf_stock.getText();
+        boolean numStok = true;
+        
+        if (tf_codebook.getText().trim().equals("") ||
+            tf_namebook.getText().trim().equals("") ||
+            tf_stock.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "!!Complete the data¡¡");
+            
+        }else if(data.search_Magazine(tf_codebook.getText()))
+            JOptionPane.showMessageDialog(null, "The book is already registered");
+            
+        else{
+            for (int i = 0; i < aux.length(); i++) {
+                char ch = aux.charAt(i);
+                if ( !Character.isDigit(ch) ) numStok = false;
+            }
+            
+            if ( numStok ){
+                data.addBook(tf_codebook.getText(), tf_namebook.getText(), 
+                                 tf_stock.getText(), "0", inf_icon);
+                JOptionPane.showMessageDialog(null, "Registered book");
+                dispose();
+            }else
+               JOptionPane.showMessageDialog(null, "!!Invalid Stock¡¡"); 
+        }
+    }//GEN-LAST:event_bt_addActionPerformed
+
+    private void chb_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_codebookActionPerformed
+        // TODO add your handling code here:
+        if (chb_codebook.isSelected()){
+            tf_namebook.setEnabled(true);
+            tf_stock.setEnabled(true);
+            bt_add.setEnabled(true);
+            cb_subjects.setEnabled(true);
+            tf_codebook.setEnabled(false);
+            
+        }else{
+            tf_codebook.setEnabled(true);
+            tf_namebook.setEnabled(false);
+            tf_stock.setEnabled(false);
+            bt_add.setEnabled(false);
+            cb_subjects.setEnabled(false);
+        } 
+    }//GEN-LAST:event_chb_codebookActionPerformed
+
+    private void cb_subjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_subjectsActionPerformed
+        // TODO add your handling code here:
+        if (cb_subjects.getSelectedIndex() == 0) {
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/cienciasNaturales.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/cienciasNaturales.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 1) {
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/english.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/english.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 2) {
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/fisica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/fisica.png";
+            
+        } else if (cb_subjects.getSelectedIndex() == 3) {
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/math.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/math.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 4) {
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/quimica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/quimica.png";
+            
+        }else if(cb_subjects.getSelectedIndex() == 5){
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/spanish.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/spanish.png";
+        }else if(cb_subjects.getSelectedIndex() == 6){
+            lb_subjects.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/other.png")
+                            .getScaledInstance(120, 80, Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/other.png";
+        }
+    }//GEN-LAST:event_cb_subjectsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,7 +351,7 @@ public class New_Book extends javax.swing.JInternalFrame {
     private javax.swing.JButton bt_cancel;
     private javax.swing.JComboBox<String> cb_state;
     private javax.swing.JComboBox<String> cb_subjects;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox chb_codebook;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -219,8 +359,9 @@ public class New_Book extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb_namebook;
     private javax.swing.JLabel lb_state;
     private javax.swing.JLabel lb_stock;
-    private javax.swing.JTextField tb_stock;
+    private javax.swing.JLabel lb_subjects;
     private javax.swing.JTextField tf_codebook;
     private javax.swing.JTextField tf_namebook;
+    private javax.swing.JTextField tf_stock;
     // End of variables declaration//GEN-END:variables
 }

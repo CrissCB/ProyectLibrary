@@ -4,6 +4,8 @@
  */
 package library;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -13,10 +15,12 @@ public class Delete_Book extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
     //-------------------------------------------------------------------------- 
-    public Delete_Book(Main main) {
+    public Delete_Book(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     /**
@@ -38,6 +42,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         bt_cancel = new javax.swing.JButton();
         lb_codebook = new javax.swing.JLabel();
         tf_codebook = new javax.swing.JTextField();
+        chb_codebook = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -55,7 +60,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 93, Short.MAX_VALUE)
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,8 +74,8 @@ public class Delete_Book extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pn_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,6 +90,11 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         bt_search.setText("Search");
 
         bt_delete.setText("Delete");
+        bt_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_deleteActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +129,12 @@ public class Delete_Book extends javax.swing.JInternalFrame {
 
         lb_codebook.setText("Code Book");
 
+        chb_codebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_codebookActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,14 +142,18 @@ public class Delete_Book extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lb_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chb_codebook)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,7 +162,8 @@ public class Delete_Book extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_codebook)
-                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chb_codebook))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,11 +179,41 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        // TODO add your handling code here:
+        if (data.search_Book(tf_codebook.getText())) {
+            data.removeBook(tf_codebook.getText());
+            JOptionPane.showMessageDialog(null, "("+tf_codebook.getText()+") book removed successfully");
+            ta_info.setText("");
+            tf_codebook.setText("");
+            bt_delete.setEnabled(false);
+            chb_codebook.setSelected(false);
+            tf_codebook.setEnabled(true);
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_bt_deleteActionPerformed
+
+    private void chb_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_codebookActionPerformed
+        // TODO add your handling code here:
+        if (tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Magazine(tf_codebook.getText())){
+            bt_delete.setEnabled(true);
+            chb_codebook.setSelected(true);
+            tf_codebook.setEnabled(false);
+            ta_info.setText(data.getMagazine(tf_codebook.getText()));
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_chb_codebookActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_delete;
     private javax.swing.JButton bt_search;
+    private javax.swing.JCheckBox chb_codebook;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

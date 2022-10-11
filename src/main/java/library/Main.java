@@ -13,6 +13,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         data = new Data();
         data.loadUsers();
+        data.loadStudent();
+        data.loadBook();
+        data.loadMagazine();
         initComponents();
     }
 
@@ -369,25 +372,25 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void newBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookActionPerformed
         // TODO add your handling code here:
-        JInternalFrame book = new New_Book(this);
+        JInternalFrame book = new New_Book(this, data);
         waterfall(book, evt);
     }//GEN-LAST:event_newBookActionPerformed
     //--------------------------------------------------------------------------
     private void searchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_Book(this);
+        JInternalFrame search = new Search_Book(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchBookActionPerformed
     //--------------------------------------------------------------------------
     private void setBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setBookActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_Book(this);
+        JInternalFrame modify = new Modify_Book(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setBookActionPerformed
     //--------------------------------------------------------------------------
     private void deleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookActionPerformed
         // TODO add your handling code here:
-         JInternalFrame delete = new Delete_Book(this);
+         JInternalFrame delete = new Delete_Book(this,data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteBookActionPerformed
     private void newMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMagazineActionPerformed

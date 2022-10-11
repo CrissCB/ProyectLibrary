@@ -19,13 +19,15 @@ import java.util.StringTokenizer;
 public class Data {
 
     protected ArrayList<String[]> users;
-    protected ArrayList<String[]> magazines;
     protected ArrayList<String[]> students;
+    protected ArrayList<String[]> books;
+    protected ArrayList<String[]> magazines;
     //--------------------------------------------------------------------------
     public Data() {
         users     = new ArrayList<>();
-        magazines = new ArrayList<>();
         students  = new ArrayList<>();
+        books     = new ArrayList<>();
+        magazines = new ArrayList<>();
     }
     //--------------------------------------------------------------------------
     public void loadUsers() {
@@ -96,6 +98,153 @@ public class Data {
             //si encontro al usuario
             if (id.equals(fields[0])) {
                 users.remove(fields);
+                break;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    public void loadStudent() {
+        File file = new File("data/student.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[3];
+                for (int i = 0; i < 3; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                students.add(fields);
+            }
+        } catch (FileNotFoundException ex) {
+        }
+
+    }
+
+    public void saveStudent() {
+        try {
+            FileWriter file = new FileWriter("data/student.data");
+            for (String[] student : students) {
+                String tokens = "";
+                for (String field : student) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    public void addStudent(String code, String name, String icon) {
+        String fields[] = {code, name, icon};
+        students.add(fields);
+    }
+
+    public ArrayList<String[]> getStudents() {
+        return students;
+    }
+
+    public String getStudent(String code) {
+        for (String[] fields : students) {
+            if (code.equals(fields[0])) {
+                return fields[0] + "\n"
+                        + fields[1]+ "\n"
+                        + fields[2];
+            }
+        }
+        return "";
+    }
+
+    public boolean search_Student(String code) {
+        for (String[] f_student : students) {
+            if (f_student[0].equals(code)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeStudent(String code) {
+        for (String[] fields : students) {
+            //si encontro al estudiante
+            if (code.equals(fields[0])){
+                students.remove(fields);
+                break;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    public void loadBook(){
+        File file = new File ("data/book.data");
+        try{
+            Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()){
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[6];
+                for (int i = 0; i < 6; i++){
+                    fields [i] =tokens.nextToken();
+                }
+                books.add(fields);
+            }
+        }catch(FileNotFoundException ex){  
+        }
+    }
+    
+    public void saveBook(){
+        try{
+            FileWriter file = new FileWriter("data/book.data");
+            for (String[] book : books){
+                String tokens = "";
+                for(String field :book){
+                    tokens+= field +",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        }catch(IOException ex){
+        }
+    }
+    
+    public void addBook(String codeBook, String nameBook,String stock, String subjects, String state){
+        String fields[] ={codeBook, nameBook, stock,subjects,state,"0"};
+        books.add(fields);
+    }
+    
+    public ArrayList<String[]> getBooks(){
+        return books;
+    }
+    
+    public String getBooks(String codeBook){
+        for(String[] fields : books){
+            if(codeBook.equals(fields[0])){
+                return fields[0] + "\n"
+                        + fields[1] + "\n"
+                        + fields[2] + "\n"
+                        + fields[3] + "\n"
+                        + fields[4];
+            }
+        }
+        return "";
+    }
+
+    public boolean search_Book(String codeBook){
+        for(String[] f_user : books){
+            if(f_user.equals(codeBook)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeBook(String codeBook){
+        for(String[] fields : books){
+            //si encontro el libro
+            if(codeBook.equals(fields[0])){
+                books.remove(fields);
                 break;
             }
         }
@@ -176,78 +325,4 @@ public class Data {
             }
         }
     }
-    //--------------------------------------------------------------------------
-    public void loadStudent() {
-        File file = new File("data/student.data");
-        try {
-            Scanner scan = new Scanner(file);
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[3];
-                for (int i = 0; i < 3; i++) {
-                    fields[i] = tokens.nextToken();
-                }
-                students.add(fields);
-            }
-        } catch (FileNotFoundException ex) {
-        }
-
-    }
-
-    public void saveStudent() {
-        try {
-            FileWriter file = new FileWriter("data/student.data");
-            for (String[] student : students) {
-                String tokens = "";
-                for (String field : student) {
-                    tokens += field + ",";
-                }
-                file.write(tokens);
-                file.write("\n");
-            }
-            file.close();
-        } catch (IOException ex) {
-        }
-    }
-
-    public void addStudent(String code, String name, String icon) {
-        String fields[] = {code, name, icon};
-        students.add(fields);
-    }
-
-    public ArrayList<String[]> getStudents() {
-        return students;
-    }
-
-    public String getStudent(String code) {
-        for (String[] fields : students) {
-            if (code.equals(fields[0])) {
-                return fields[0] + "\n"
-                        + fields[1]+ "\n"
-                        + fields[2];
-            }
-        }
-        return "";
-    }
-
-    public boolean search_Student(String code) {
-        for (String[] f_student : students) {
-            if (f_student[0].equals(code)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void removeStudent(String code) {
-        for (String[] fields : students) {
-            //si encontro al estudiante
-            if (code.equals(fields[0])){
-                students.remove(fields);
-                break;
-            }
-        }
-    }
-    
 }
