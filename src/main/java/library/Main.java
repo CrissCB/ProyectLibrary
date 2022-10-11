@@ -71,6 +71,9 @@ public class Main extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         javax.swing.GroupLayout dp_paneLayout = new javax.swing.GroupLayout(dp_pane);
@@ -205,19 +208,10 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu4.add(newMagazine);
 
-        deleteMagazine.setText("Delete Magazine");
-        deleteMagazine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteMagazineActionPerformed(evt);
-            }
-        });
-        jMenu4.add(deleteMagazine);
-        jMenu4.add(jSeparator4);
-
         searchMagazine.setText("Search Magazine");
         searchMagazine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchMagazineActionPerformed(evt);
+                deleteMagazineActionPerformed(evt);
             }
         });
         jMenu4.add(searchMagazine);
@@ -226,12 +220,17 @@ public class Main extends javax.swing.JFrame {
         setMagazine.setText("Modify Magazine");
         setMagazine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setMagazineActionPerformed(evt);
+                searchMagazineActionPerformed(evt);
             }
         });
         jMenu4.add(setMagazine);
 
         deleteMagazine.setText("Delete Magazine");
+        deleteMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(deleteMagazine);
 
         jMenuBar1.add(jMenu4);
@@ -444,6 +443,11 @@ public class Main extends javax.swing.JFrame {
         data.saveStudent();
         data.saveMagazine();
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        new Login(this,data);
+    }//GEN-LAST:event_formWindowOpened
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
@@ -481,6 +485,10 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     public JMenuItem getLoans() {
         return loans;
+    }
+    
+    public void closed (){
+        this.closed();
     }
 
     //--------------------------------------------------------------------------

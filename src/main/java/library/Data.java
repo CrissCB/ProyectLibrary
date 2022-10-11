@@ -91,6 +91,14 @@ public class Data {
         }
         return false;
     }
+    public boolean search_user_pass(String id,String pas) {
+        for (String[] f_user : users) {
+            if (f_user[0].equals(id) && f_user[2].equals(pas)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void removeUser(String id) {
         for (String[] fields : users) {
@@ -250,5 +258,6 @@ public class Data {
             }
         }
     }
+    
     
 }
