@@ -24,7 +24,7 @@ public class Login extends JDialog {
         super(ma, true);
         setTitle("Login");
         this.setSize(350, 160);
-        this.main= ma;
+        this.main = ma;
         this.data = d;
         setupWidgets();
         setupEvents();
@@ -32,7 +32,7 @@ public class Login extends JDialog {
     }
 
     private void setupWidgets() {
-        
+
         this.setLayout(null);
 
         JLabel user = new JLabel("User Name");
@@ -57,7 +57,7 @@ public class Login extends JDialog {
         this.add(pass);
         this.add(tf_id);
         this.add(pf_pass);
-        this.add(bt_ok );
+        this.add(bt_ok);
         this.add(bt_cancel);
     }
 
@@ -65,25 +65,29 @@ public class Login extends JDialog {
         bt_cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                main.dispose();                
+                main.dispose();
+                main.closed();
             }
         });
         bt_ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name(tf_id.getText(), pf_pass.getText())==true) {
+                if (name(tf_id.getText(), pf_pass.getText()) == true) {
                     dispose();
+                } else {
+                    main.closed();
                 }
             }
-        });
+        }); 
+        
     }
 
     private static boolean name(String n, String pass) {
-        if (n.equals("")|| pass.equals("")) {
+        if (n.equals("") || pass.equals("")) {
             JOptionPane.showMessageDialog(null, " is empty, re-enter data");
             return false;
-        }        
-        if (data.search_user_pass(n,pass)==false) {
+        }
+        if (data.search_user_pass(n, pass) == false) {
             JOptionPane.showMessageDialog(null, "The user isn't registered");
             return false;
         } else {

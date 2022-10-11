@@ -267,9 +267,19 @@ public class Main extends javax.swing.JFrame {
         jMenu6.setText("Report");
 
         rp_User.setText("Users");
+        rp_User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_UserActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_User);
 
         rp_Student.setText("Students");
+        rp_Student.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_StudentActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Student);
         jMenu6.add(jSeparator6);
 
@@ -277,6 +287,11 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(rp_Book);
 
         rp_Magazine.setText("Magazines");
+        rp_Magazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_MagazineActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Magazine);
         jMenu6.add(jSeparator7);
 
@@ -448,6 +463,24 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Login(this,data);
     }//GEN-LAST:event_formWindowOpened
+
+    private void rp_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_UserActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_user = new Report_User(this,data);
+         waterfall(report_user, evt);
+    }//GEN-LAST:event_rp_UserActionPerformed
+
+    private void rp_StudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_StudentActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_student = new Report_Student(this,data);
+         waterfall(report_student, evt);
+    }//GEN-LAST:event_rp_StudentActionPerformed
+
+    private void rp_MagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_MagazineActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_magazine = new Report_Magazine(this,data);
+         waterfall(report_magazine, evt);
+    }//GEN-LAST:event_rp_MagazineActionPerformed
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
@@ -488,7 +521,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void closed (){
-        this.closed();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     //--------------------------------------------------------------------------
