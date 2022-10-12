@@ -29,7 +29,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
-                  <Component id="jPanel3" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -40,9 +43,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,15 +63,28 @@
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="cb_icon" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="pn_icon" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_numMagazine" alignment="0" pref="160" max="32767" attributes="0"/>
-                      <Component id="tf_volume" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tf_date" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="tf_loan" pref="159" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tf_stock" pref="160" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tf_numMagazine" alignment="0" pref="160" max="32767" attributes="0"/>
+                                  <Component id="tf_volume" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tf_date" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="pn_icon" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -90,12 +106,24 @@
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_date" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cb_icon" min="-2" max="-2" attributes="0"/>
-                      <Component id="pn_icon" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_stock" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_loan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="cb_icon" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="pn_icon" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -107,6 +135,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_numMagazine">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_numMagazineActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -131,15 +162,20 @@
         <Component class="javax.swing.JComboBox" name="cb_icon">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="6">
+                <StringItem index="0" value="Cientifica"/>
+                <StringItem index="1" value="Cocina"/>
+                <StringItem index="2" value="Deportes"/>
+                <StringItem index="3" value="Medicina"/>
+                <StringItem index="4" value="Politica"/>
+                <StringItem index="5" value="Otros"/>
               </StringArray>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_iconActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -156,16 +192,49 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Component id="lb_icon" alignment="0" pref="120" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Component id="lb_icon" alignment="0" pref="80" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lb_icon">
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lb_icon"/>
+              </AccessibilityProperties>
+            </Component>
+          </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Stock"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tf_stock">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Loan"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tf_loan">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
@@ -174,21 +243,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="bt_dinamic" min="-2" pref="125" max="-2" attributes="0"/>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
-                  <Component id="bt_cancel" min="-2" pref="125" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bt_modify" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="bt_cancel" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bt_dinamic" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bt_cancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_modify" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -196,17 +265,21 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="bt_dinamic">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Search"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="bt_cancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_cancelActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bt_modify">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modify"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_modifyActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

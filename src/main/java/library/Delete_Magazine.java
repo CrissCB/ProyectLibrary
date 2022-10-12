@@ -4,6 +4,12 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Crist
@@ -12,10 +18,12 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
     //-------------------------------------------------------------------------- 
-    public Delete_Magazine(Main main) {
+    public Delete_Magazine(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     /**
@@ -31,20 +39,22 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_info = new javax.swing.JTextArea();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        bt_dinamic = new javax.swing.JButton();
+        bt_delete = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_numMagazine = new javax.swing.JTextField();
+        chb_numMagazine = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Delete Magazine");
         setVisible(true);
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -53,11 +63,15 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createSequentialGroup()
+                .addComponent(lb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createSequentialGroup()
+                .addComponent(lb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -76,12 +90,18 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(pn_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        bt_dinamic.setText("Search");
+        bt_delete.setText("Delete");
+        bt_delete.setEnabled(false);
+        bt_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_deleteActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -95,23 +115,35 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(bt_dinamic, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(bt_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_dinamic)
+                    .addComponent(bt_delete)
                     .addComponent(bt_cancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Num. Magazine");
+
+        tf_numMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_numMagazineActionPerformed(evt);
+            }
+        });
+
+        chb_numMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_numMagazineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,17 +159,21 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tf_numMagazine)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chb_numMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,19 +184,96 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        data.removeMagazine(tf_numMagazine.getText());
+        JOptionPane.showMessageDialog(null, "("+tf_numMagazine.getText()+") magazine removed successfully");
+        ta_info.setText("");
+        tf_numMagazine.setText("");
+        bt_delete.setEnabled(false);
+        chb_numMagazine.setSelected(false);
+        tf_numMagazine.setEnabled(true);
+        lb_icon.setIcon(null);
+    }//GEN-LAST:event_bt_deleteActionPerformed
+
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
+
+    private void tf_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_numMagazineActionPerformed
+        
+        if (tf_numMagazine.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Magazine(tf_numMagazine.getText())){
+            bt_delete.setEnabled(true);
+            chb_numMagazine.setSelected(true);
+            tf_numMagazine.setEnabled(false);
+            
+            int i = 0;
+            String[] inf = new String[6];
+            StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[5])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Num Magazine:   "+inf[0]+
+                            "\nVol. Magazine:    "+inf[1]+
+                            "\nData Magazine:   "+inf[2]+
+                            "\nStock Magazine: "+inf[3]+
+                            "\nLoan Magazine:   "+inf[4]);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The magazine isn't registered");
+    }//GEN-LAST:event_tf_numMagazineActionPerformed
+
+    private void chb_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_numMagazineActionPerformed
+        if (chb_numMagazine.isSelected()){
+            if (data.search_Magazine(tf_numMagazine.getText())) {
+                tf_numMagazine.setEnabled(false);
+                bt_delete.setEnabled(true);
+                
+                int i = 0;
+                String[] inf = new String[6];
+                StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+                while ( i < 6 ){
+                    inf[i] = aux.nextToken();
+                    i++;
+                }
+
+                lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                                .getImage(inf[5])
+                                .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+
+                ta_info.setText("Num Magazine:   "+inf[0]+
+                                "\nVol. Magazine:    "+inf[1]+
+                                "\nData Magazine:   "+inf[2]+
+                                "\nStock Magazine: "+inf[3]+
+                                "\nLoan Magazine:   "+inf[4]);
+            }else
+            chb_numMagazine.setSelected(true);
+        }else{ 
+            tf_numMagazine.setEnabled(true);
+            bt_delete.setEnabled(false);
+        }
+    }//GEN-LAST:event_chb_numMagazineActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
-    private javax.swing.JButton bt_dinamic;
+    private javax.swing.JButton bt_delete;
+    private javax.swing.JCheckBox chb_numMagazine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_numMagazine;

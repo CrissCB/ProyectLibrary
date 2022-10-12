@@ -4,6 +4,12 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Udenar
@@ -11,12 +17,14 @@ package library;
 public class Search_Book extends javax.swing.JInternalFrame {
 
     private Main main;
+    private Data data;
     /**
      * Creates new form Search_Book
      */
-    public Search_Book(Main main) {
+    public Search_Book(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     /**
@@ -31,11 +39,12 @@ public class Search_Book extends javax.swing.JInternalFrame {
         lb_codebook = new javax.swing.JLabel();
         tf_codebook = new javax.swing.JTextField();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         bt_search = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_info = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -44,20 +53,31 @@ public class Search_Book extends javax.swing.JInternalFrame {
 
         lb_codebook.setText("Code Book");
 
+        tf_codebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codebookActionPerformed(evt);
+            }
+        });
+
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout pn_iconLayout = new javax.swing.GroupLayout(pn_icon);
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -85,10 +105,10 @@ public class Search_Book extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane2.setViewportView(jTextArea1);
+        ta_info.setEditable(false);
+        ta_info.setColumns(20);
+        ta_info.setRows(5);
+        jScrollPane2.setViewportView(ta_info);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,15 +150,72 @@ public class Search_Book extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void tf_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codebookActionPerformed
+        // TODO add your handling code here:
+        if(tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] inf = new String[5];
+            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+
+            while ( i < 5 ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[4])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Code Book:   "+inf[0]+
+                            "\nName Book:    "+inf[1]+
+                            "\nStock Book:   "+inf[2]+
+                            "\nLoan Book: "+inf[3]);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_tf_codebookActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        // TODO add your handling code here:
+        if(tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] inf = new String[5];
+            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+
+            while ( i < 5 ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[4])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Code Book:   "+inf[0]+
+                            "\nName Book:    "+inf[1]+
+                            "\nStock Book:   "+inf[2]+
+                            "\nLoan Book: "+inf[3]);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_search;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lb_codebook;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
+    private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_codebook;
     // End of variables declaration//GEN-END:variables
 }

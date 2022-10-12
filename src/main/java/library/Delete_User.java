@@ -4,20 +4,24 @@
  */
 package library;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
  */
 public class Delete_User extends javax.swing.JInternalFrame {
 
-    private Main main;
+    private Data data;
+    private Main ma;
 
     /**
      * Creates new form Delete_User
      */
-    public Delete_User(Main main) {
+    public Delete_User(Main main, Data dat) {
         initComponents();
-        this.main = main;
+        this.ma = main;
+        this.data = dat;
     }
 
     /**
@@ -52,7 +56,6 @@ public class Delete_User extends javax.swing.JInternalFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,6 +86,7 @@ public class Delete_User extends javax.swing.JInternalFrame {
         );
 
         bt_remove.setText("Search");
+        bt_remove.setEnabled(false);
         bt_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_removeActionPerformed(evt);
@@ -127,15 +131,27 @@ public class Delete_User extends javax.swing.JInternalFrame {
 
     private void bt_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_removeActionPerformed
         // TODO add your handling code here:
+        data.removeUser(tf_id.getText());
     }//GEN-LAST:event_bt_removeActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
         // TODO add your handling code here:
         dispose();
+
     }//GEN-LAST:event_bt_cancelActionPerformed
 
     private void tf_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:  
+        if (tf_id.getText().equals("")) {
+            jTextArea1.setText("It is empty, re-enter data ");
+        }
+        if (data.search_user(tf_id.getText())==true) {
+            String cont = data.getUsers(tf_id.getText());
+            jTextArea1.setText(cont);
+            bt_remove.setEnabled(true);
+        } else {
+            jTextArea1.setText("It is not registered");
+        }
     }//GEN-LAST:event_tf_idActionPerformed
 
 

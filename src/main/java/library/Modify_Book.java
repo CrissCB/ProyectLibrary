@@ -4,6 +4,12 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Crist
@@ -12,10 +18,13 @@ public class Modify_Book extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
+    private String inf_icon;
     //--------------------------------------------------------------------------
-    public Modify_Book(Main main) {
+    public Modify_Book(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
     }
 
     /**
@@ -34,11 +43,12 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         tf_namebook = new javax.swing.JTextField();
         lb_stock = new javax.swing.JLabel();
         tf_stock = new javax.swing.JTextField();
-        cb_icon = new javax.swing.JComboBox<>();
+        cb_subjects = new javax.swing.JComboBox<>();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         lb_subjects = new javax.swing.JLabel();
-        lb_state = new javax.swing.JLabel();
-        cb_state = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        tf_loan = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         bt_modify = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -51,6 +61,12 @@ public class Modify_Book extends javax.swing.JInternalFrame {
 
         lb_codebook.setText("Code Book");
 
+        tf_codebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codebookActionPerformed(evt);
+            }
+        });
+
         lb_namebook.setText("Name Book");
 
         tf_namebook.setEnabled(false);
@@ -59,8 +75,13 @@ public class Modify_Book extends javax.swing.JInternalFrame {
 
         tf_stock.setEnabled(false);
 
-        cb_icon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cb_icon.setEnabled(false);
+        cb_subjects.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencias Naturales", "Ingles", "Física", "Matemáticas", "Química", "Español", "Otros" }));
+        cb_subjects.setEnabled(false);
+        cb_subjects.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_subjectsActionPerformed(evt);
+            }
+        });
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -68,18 +89,18 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         pn_icon.setLayout(pn_iconLayout);
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         lb_subjects.setText("Subjects");
 
-        lb_state.setText("State");
+        jLabel1.setText("Loan");
 
-        cb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tf_loan.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,27 +110,25 @@ public class Modify_Book extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lb_subjects)
+                        .addGap(40, 40, 40)
+                        .addComponent(cb_subjects, 0, 92, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_namebook)
-                            .addComponent(lb_stock))
+                            .addComponent(lb_stock)
+                            .addComponent(jLabel1))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_codebook, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(tf_namebook)
-                            .addComponent(tf_stock))
-                        .addContainerGap(9, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_subjects)
-                            .addComponent(lb_state))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cb_icon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cb_state, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
+                            .addComponent(tf_stock)
+                            .addComponent(tf_loan))
+                        .addContainerGap(19, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,20 +146,27 @@ public class Modify_Book extends javax.swing.JInternalFrame {
                     .addComponent(lb_stock)
                     .addComponent(tf_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tf_loan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_subjects))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_state)
-                            .addComponent(cb_state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40))
                     .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         bt_modify.setText("Modify");
+        bt_modify.setEnabled(false);
+        bt_modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modifyActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -182,17 +208,17 @@ public class Modify_Book extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -203,22 +229,167 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void tf_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codebookActionPerformed
+        // TODO add your handling code here:
+         if (tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] aux = new String[5];
+            StringTokenizer inf = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            
+            while (i < 5){
+                aux[i] = inf.nextToken();
+                i++;
+            }
+            
+            bt_modify.setEnabled(true);
+            tf_namebook.setEnabled(true);
+            tf_namebook.setText(aux[1]);           
+            tf_stock.setEnabled(true);
+            tf_stock.setText(aux[2]);
+            tf_loan.setEnabled(true);
+            tf_loan.setText(aux[3]);
+            cb_subjects.setEnabled(true);
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(aux[4])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            
+            if (aux[4].equals("Icon_Book/cienciasNaturales.png"))
+                cb_subjects.setSelectedIndex(0);
+            
+            else if (aux[4].equals("Icon_Book/english.png")) 
+                cb_subjects.setSelectedIndex(1);
+            
+            else if (aux[4].equals("Icon_Book/fisica.png"))
+                cb_subjects.setSelectedIndex(2);
+            
+            else if(aux[4].equals("Icon_Book/math.png"))
+                cb_subjects.setSelectedIndex(3);
+            
+            else if(aux[4].equals("Icon_Book/quimica.png"))
+                cb_subjects.setSelectedIndex(4);
+            
+            else if (aux[4].equals("Icon_Book/spanish.png"))
+                cb_subjects.setSelectedIndex(5);
+            
+            else 
+                cb_subjects.setSelectedIndex(6);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_tf_codebookActionPerformed
+
+    private void cb_subjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_subjectsActionPerformed
+        // TODO add your handling code here:
+        if (cb_subjects.getSelectedIndex() == 0) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/cienciasNaturales.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/cienciasNaturales.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 1) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/english.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/english.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 2) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/fisica.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/fisica.png";
+            
+        } else if (cb_subjects.getSelectedIndex() == 3) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/math.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/math.png";
+            
+        }else if (cb_subjects.getSelectedIndex() == 4) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/quimica.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/quimica.png";
+            
+        }else if(cb_subjects.getSelectedIndex() == 5){
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/spanish.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/spanish.png";
+            
+        }else{
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Book/other.png")
+                            .getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Book/other.png";
+        }
+    }//GEN-LAST:event_cb_subjectsActionPerformed
+
+    private void bt_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modifyActionPerformed
+        // TODO add your handling code here:
+        String aux  = tf_stock.getText();
+        String aux2 = tf_loan.getText();
+        boolean numStok = true;
+        
+        for (int i = 0; i < aux.length(); i++) {
+                char ch  = aux.charAt(i);
+                if ( !(Character.isDigit(ch)) ) numStok = false;
+            }
+        for (int i = 0; i < aux2.length(); i++) {
+                char ch2  = aux2.charAt(i);
+                if ( !(Character.isDigit(ch2)) ) numStok = false;
+        }
+        
+        if (tf_codebook.getText().trim().equals("")|| tf_namebook.getText().trim().equals("") 
+                || tf_stock.getText().trim().equals("") || tf_loan.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data"); 
+            
+        else{
+            
+            if (numStok){
+                data.removeBook(tf_codebook.getText());
+                data.addBook(tf_codebook.getText(), tf_namebook.getText(), 
+                                tf_stock.getText(), tf_loan.getText(), inf_icon, "1" );  
+                
+                
+                
+                JOptionPane.showMessageDialog(null, "("+tf_codebook.getText()+") is modify"); 
+                tf_namebook.setEnabled(false);
+                tf_namebook.setText("");
+                tf_stock.setEnabled(false);
+                tf_stock.setText("");
+                tf_loan.setEnabled(false);
+                tf_loan.setText("");
+                cb_subjects.setEnabled(false);
+                cb_subjects.setSelectedIndex(0);
+                lb_icon.setIcon(null);
+                tf_codebook.setText("");
+                bt_modify.setEnabled(false);
+                
+            }else
+                JOptionPane.showMessageDialog(null, "Invalid Stock or Invalid Loan"); 
+        }  
+    }//GEN-LAST:event_bt_modifyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_modify;
     private javax.swing.JButton bt_search;
-    private javax.swing.JComboBox<String> cb_icon;
-    private javax.swing.JComboBox<String> cb_state;
+    private javax.swing.JComboBox<String> cb_subjects;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lb_codebook;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JLabel lb_namebook;
-    private javax.swing.JLabel lb_state;
     private javax.swing.JLabel lb_stock;
     private javax.swing.JLabel lb_subjects;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextField tf_codebook;
+    private javax.swing.JTextField tf_loan;
     private javax.swing.JTextField tf_namebook;
     private javax.swing.JTextField tf_stock;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,11 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Crist
@@ -12,11 +17,16 @@ public class New_Magazine extends javax.swing.JInternalFrame {
 
     //------------------------ATTRIBUTES
     private Main main;
+    private Data data;
+    private String inf_icon;
     //------------------------------------
     
-    public New_Magazine(Main main) {
+    public New_Magazine(Main main, Data data) {
         initComponents();
         this.main = main;
+        this.data = data;
+        inf_icon = "Icon_Magazine/cientifica.png";
+        cb_icon.setSelectedIndex(0);
     }
 
     /**
@@ -35,8 +45,12 @@ public class New_Magazine extends javax.swing.JInternalFrame {
         tf_numMagazine = new javax.swing.JTextField();
         tf_volume = new javax.swing.JTextField();
         tf_date = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        cb_icon = new javax.swing.JComboBox<>();
+        pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tf_stock = new javax.swing.JTextField();
+        chb_numMagazine = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         bt_add = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
@@ -58,20 +72,46 @@ public class New_Magazine extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tf_volume.setEnabled(false);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tf_date.setEnabled(false);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+        cb_icon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cientifica", "Cocina", "Deportes", "Medicina", "Politica", "Otros" }));
+        cb_icon.setEnabled(false);
+        cb_icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_iconActionPerformed(evt);
+            }
+        });
+
+        pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout pn_iconLayout = new javax.swing.GroupLayout(pn_icon);
+        pn_icon.setLayout(pn_iconLayout);
+        pn_iconLayout.setHorizontalGroup(
+            pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+        pn_iconLayout.setVerticalGroup(
+            pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pn_iconLayout.createSequentialGroup()
+                    .addComponent(lb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        jLabel4.setText("Stock");
+
+        tf_stock.setEnabled(false);
+
+        chb_numMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_numMagazineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,26 +123,31 @@ public class New_Magazine extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tf_numMagazine)
                         .addComponent(tf_volume)
-                        .addComponent(tf_date, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                        .addComponent(tf_date, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addComponent(tf_stock, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_numMagazine))
+                    .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chb_numMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(tf_numMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -111,19 +156,26 @@ public class New_Magazine extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tf_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tf_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(pn_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel2.setPreferredSize(new java.awt.Dimension(358, 40));
 
         bt_add.setText("Add");
+        bt_add.setEnabled(false);
+        bt_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_addActionPerformed(evt);
+            }
+        });
 
         bt_cancel.setText("Cancel");
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +191,7 @@ public class New_Magazine extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(bt_add, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -148,7 +200,7 @@ public class New_Magazine extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_add, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(bt_add)
                     .addComponent(bt_cancel))
                 .addContainerGap())
         );
@@ -159,10 +211,9 @@ public class New_Magazine extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +228,21 @@ public class New_Magazine extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_numMagazineActionPerformed
-        // TODO add your handling code here:
+        if (tf_numMagazine.getText().trim().equals("")) 
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Magazine(tf_numMagazine.getText()))
+           JOptionPane.showMessageDialog(null, "The magazine is already registered");
+        
+        else{
+            tf_volume.setEnabled(true);
+            tf_date.setEnabled(true);
+            tf_stock.setEnabled(true);
+            bt_add.setEnabled(true);
+            cb_icon.setEnabled(true);
+            tf_numMagazine.setEnabled(false);
+            chb_numMagazine.setSelected(true);
+        }
     }//GEN-LAST:event_tf_numMagazineActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
@@ -185,19 +250,112 @@ public class New_Magazine extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_bt_cancelActionPerformed
 
+    private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
+        String aux = tf_stock.getText();
+        boolean numStok = true;
+        
+        if (tf_numMagazine.getText().trim().equals("") ||
+            tf_date.getText().trim().equals("") ||
+            tf_volume.getText().trim().equals("") ||
+            tf_stock.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "!!Complete the data¡¡");
+            
+        }else if(data.search_Magazine(tf_numMagazine.getText()))
+            JOptionPane.showMessageDialog(null, "The magazine is already registered");
+            
+        else{
+            for (int i = 0; i < aux.length(); i++) {
+                char ch = aux.charAt(i);
+                if ( !Character.isDigit(ch) ) numStok = false;
+            }
+            
+            if ( numStok ){
+                data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
+                                 tf_date.getText(), tf_stock.getText(), "0", inf_icon, "1");
+                JOptionPane.showMessageDialog(null, "Registered magazine");
+                dispose();
+            }else
+               JOptionPane.showMessageDialog(null, "!!Invalid Stock¡¡"); 
+        }
+    }//GEN-LAST:event_bt_addActionPerformed
+
+    private void chb_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_numMagazineActionPerformed
+        if (chb_numMagazine.isSelected()){
+            tf_volume.setEnabled(true);
+            tf_date.setEnabled(true);
+            tf_stock.setEnabled(true);
+            bt_add.setEnabled(true);
+            cb_icon.setEnabled(true);
+            tf_numMagazine.setEnabled(false);
+            
+        }else{
+            tf_numMagazine.setEnabled(true);
+            tf_volume.setEnabled(false);
+            tf_date.setEnabled(false);
+            tf_stock.setEnabled(false);
+            bt_add.setEnabled(false);
+            cb_icon.setEnabled(false);
+        } 
+            
+    }//GEN-LAST:event_chb_numMagazineActionPerformed
+
+    private void cb_iconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_iconActionPerformed
+        
+        if (cb_icon.getSelectedIndex() == 0) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/cientifica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/cientifica.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 1) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/cocina.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/cocina.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 2) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/deportes.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/deportes.png";
+            
+        } else if (cb_icon.getSelectedIndex() == 3) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/medicina.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/medicina.png";
+            
+        }else if (cb_icon.getSelectedIndex() == 4) {
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/politica.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/politica.png";
+            
+        }else{
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_Magazine/other.png")
+                            .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_Magazine/other.png";
+        }
+    }//GEN-LAST:event_cb_iconActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;
     private javax.swing.JButton bt_cancel;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cb_icon;
+    private javax.swing.JCheckBox chb_numMagazine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lb_icon;
+    private javax.swing.JPanel pn_icon;
     private javax.swing.JTextField tf_date;
     private javax.swing.JTextField tf_numMagazine;
+    private javax.swing.JTextField tf_stock;
     private javax.swing.JTextField tf_volume;
     // End of variables declaration//GEN-END:variables
 }
