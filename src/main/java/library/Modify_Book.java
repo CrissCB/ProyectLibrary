@@ -176,6 +176,11 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         });
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -372,6 +377,57 @@ public class Modify_Book extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Invalid Stock or Invalid Loan"); 
         }  
     }//GEN-LAST:event_bt_modifyActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        if (tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] aux = new String[5];
+            StringTokenizer inf = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            
+            while (i < 5){
+                aux[i] = inf.nextToken();
+                i++;
+            }
+            
+            bt_modify.setEnabled(true);
+            tf_namebook.setEnabled(true);
+            tf_namebook.setText(aux[1]);           
+            tf_stock.setEnabled(true);
+            tf_stock.setText(aux[2]);
+            tf_loan.setEnabled(true);
+            tf_loan.setText(aux[3]);
+            cb_subjects.setEnabled(true);
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(aux[4])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            
+            if (aux[4].equals("Icon_Book/cienciasNaturales.png"))
+                cb_subjects.setSelectedIndex(0);
+            
+            else if (aux[4].equals("Icon_Book/english.png")) 
+                cb_subjects.setSelectedIndex(1);
+            
+            else if (aux[4].equals("Icon_Book/fisica.png"))
+                cb_subjects.setSelectedIndex(2);
+            
+            else if(aux[4].equals("Icon_Book/math.png"))
+                cb_subjects.setSelectedIndex(3);
+            
+            else if(aux[4].equals("Icon_Book/quimica.png"))
+                cb_subjects.setSelectedIndex(4);
+            
+            else if (aux[4].equals("Icon_Book/spanish.png"))
+                cb_subjects.setSelectedIndex(5);
+            
+            else 
+                cb_subjects.setSelectedIndex(6);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
