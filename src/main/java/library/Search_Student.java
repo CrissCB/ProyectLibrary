@@ -164,7 +164,7 @@ public class Search_Student extends javax.swing.JInternalFrame {
         
         else if (data.search_Student(tf_code.getText())){
             int i = 0;
-            String[] inf = new String[3];
+            String[] inf = new String[4];
             StringTokenizer aux = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
 
             while (aux.hasMoreElements() ){
@@ -173,11 +173,12 @@ public class Search_Student extends javax.swing.JInternalFrame {
             }
             
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(inf[2])
+                            .getImage(inf[3])
                             .getScaledInstance(86,86,Image.SCALE_SMOOTH)));
             
-            ta_info.setText("Code Student:  "+inf[0]+
-                            "\nName Student: "+inf[1]);
+            ta_info.setText("Code Student: "+inf[0]+
+                            "\nName Student: "+inf[1]+
+                            "\nLoan: "+inf[2]);
         
         }else
             JOptionPane.showMessageDialog(null, "The student isn't registered");
@@ -189,7 +190,7 @@ public class Search_Student extends javax.swing.JInternalFrame {
         
         else if (data.search_Student(tf_code.getText())){
             int i = 0;
-            String[] inf = new String[3];
+            String[] inf = new String[4];
             StringTokenizer aux = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
 
             while (aux.hasMoreElements() ){
@@ -198,11 +199,12 @@ public class Search_Student extends javax.swing.JInternalFrame {
             }
             
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(inf[2])
+                            .getImage(inf[3])
                             .getScaledInstance(86,86,Image.SCALE_SMOOTH)));
             
             ta_info.setText("Code Student:  "+inf[0]+
-                            "\nName Student: "+inf[1]);
+                            "\nName Student: "+inf[1]+
+                            "\nLoan: "+inf[2]);
         
         }else
             JOptionPane.showMessageDialog(null, "The student isn't registered");

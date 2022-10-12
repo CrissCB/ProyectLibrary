@@ -185,18 +185,14 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
-        if (data.search_Magazine(tf_numMagazine.getText())) {
-            data.removeMagazine(tf_numMagazine.getText());
-            JOptionPane.showMessageDialog(null, "("+tf_numMagazine.getText()+") magazine removed successfully");
-            ta_info.setText("");
-            tf_numMagazine.setText("");
-            bt_delete.setEnabled(false);
-            chb_numMagazine.setSelected(false);
-            tf_numMagazine.setEnabled(true);
-            lb_icon.setIcon(null);
-        }else
-            JOptionPane.showMessageDialog(null, "The magazine isn't registered");
-        
+        data.removeMagazine(tf_numMagazine.getText());
+        JOptionPane.showMessageDialog(null, "("+tf_numMagazine.getText()+") magazine removed successfully");
+        ta_info.setText("");
+        tf_numMagazine.setText("");
+        bt_delete.setEnabled(false);
+        chb_numMagazine.setSelected(false);
+        tf_numMagazine.setEnabled(true);
+        lb_icon.setIcon(null);
     }//GEN-LAST:event_bt_deleteActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
@@ -238,8 +234,30 @@ public class Delete_Magazine extends javax.swing.JInternalFrame {
 
     private void chb_numMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_numMagazineActionPerformed
         if (chb_numMagazine.isSelected()){
-            tf_numMagazine.setEnabled(false);
-            bt_delete.setEnabled(true);
+            if (data.search_Magazine(tf_numMagazine.getText())) {
+                tf_numMagazine.setEnabled(false);
+                bt_delete.setEnabled(true);
+                
+                int i = 0;
+                String[] inf = new String[6];
+                StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
+
+                while ( i < 6 ){
+                    inf[i] = aux.nextToken();
+                    i++;
+                }
+
+                lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                                .getImage(inf[5])
+                                .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+
+                ta_info.setText("Num Magazine:   "+inf[0]+
+                                "\nVol. Magazine:    "+inf[1]+
+                                "\nData Magazine:   "+inf[2]+
+                                "\nStock Magazine: "+inf[3]+
+                                "\nLoan Magazine:   "+inf[4]);
+            }else
+            chb_numMagazine.setSelected(true);
         }else{ 
             tf_numMagazine.setEnabled(true);
             bt_delete.setEnabled(false);

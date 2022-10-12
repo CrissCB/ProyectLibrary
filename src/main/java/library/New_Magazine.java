@@ -271,7 +271,7 @@ public class New_Magazine extends javax.swing.JInternalFrame {
             
             if ( numStok ){
                 data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
-                                 tf_date.getText(), tf_stock.getText(), "0", inf_icon);
+                                 tf_date.getText(), tf_stock.getText(), "0", inf_icon, "1");
                 JOptionPane.showMessageDialog(null, "Registered magazine");
                 dispose();
             }else

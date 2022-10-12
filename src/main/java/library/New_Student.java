@@ -225,7 +225,7 @@ public class New_Student extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "you are already registered");
         
         else{
-            data.addStudent(tf_code.getText(), tf_name.getText(), inf_icon);
+            data.addStudent(tf_code.getText(), tf_name.getText(), "0", inf_icon);
             JOptionPane.showMessageDialog(null, "Registered Student");
             dispose();
         }

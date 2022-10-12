@@ -185,7 +185,7 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
             String[] inf = new String[6];
             StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
 
-            while (aux.hasMoreElements() ){
+            while ( i < 6 ){
                 inf[i] = aux.nextToken();
                 i++;
             }
@@ -214,7 +214,7 @@ public class Search_Magazine extends javax.swing.JInternalFrame {
             String[] inf = new String[6];
             StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
 
-            while (aux.hasMoreElements() ){
+            while ( i < 6 ){
                 inf[i] = aux.nextToken();
                 i++;
             }
