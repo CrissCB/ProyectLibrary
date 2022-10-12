@@ -37,8 +37,8 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[3];
-                for (int i = 0; i < 3; i++) {
+                String[] fields = new String[4];
+                for (int i = 0; i < 4; i++) {
                     fields[i] = tokens.nextToken();
                 }
                 users.add(fields);
@@ -73,7 +73,7 @@ public class Data {
         return users;
     }
 
-    public String getUsers(String id) {
+    public String getUser(String id) {
         for (String[] fields : users) {
             if (id.equals(fields[0])) {
                 return fields[0] + "\n"
@@ -127,7 +127,6 @@ public class Data {
             }
         } catch (FileNotFoundException ex) {
         }
-
     }
 
     public void saveStudent() {
@@ -228,7 +227,7 @@ public class Data {
         return books;
     }
     
-    public String getBooks(String codeBook){
+    public String getBook(String codeBook){
         for(String[] fields : books){
             if(codeBook.equals(fields[0])){
                 return fields[0] + "\n"

@@ -181,15 +181,28 @@ public class Delete_Student extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
         else if (data.search_Student(tf_code.getText())) {
-            data.removeStudent(tf_code.getText());
-            JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") student removed successfully");
-            tf_code.setEnabled(true);
-            tf_code.setText("");
-            ta_info.setText("");
-            bt_remove.setEnabled(false);
-            chb_code.setSelected(false);
-            lb_icon.setIcon(null);
+            int i = 0;
             
+            String[] inf = new String[4];
+            StringTokenizer aux = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            if( Integer.parseInt(inf[2]) > 0 ){
+               data.removeStudent(tf_code.getText());
+                JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") student removed successfully");
+                tf_code.setEnabled(true);
+                tf_code.setText("");
+                ta_info.setText("");
+                bt_remove.setEnabled(false);
+                chb_code.setSelected(false);
+                lb_icon.setIcon(null);
+            }else
+               JOptionPane.showMessageDialog(null, "The student cannot be removed because they have loans"); 
+     
         }else
             JOptionPane.showMessageDialog(null, "The student isn't registered");
             

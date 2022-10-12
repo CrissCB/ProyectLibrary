@@ -242,7 +242,7 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
             String[] aux = new String[5];
-            StringTokenizer inf = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            StringTokenizer inf = new StringTokenizer(data.getBook(tf_codebook.getText()), "\n");
             
             while (i < 5){
                 aux[i] = inf.nextToken();
@@ -385,7 +385,7 @@ public class Modify_Book extends javax.swing.JInternalFrame {
         else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
             String[] aux = new String[5];
-            StringTokenizer inf = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            StringTokenizer inf = new StringTokenizer(data.getBook(tf_codebook.getText()), "\n");
             
             while (i < 5){
                 aux[i] = inf.nextToken();

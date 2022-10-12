@@ -285,6 +285,11 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(jSeparator6);
 
         rp_Book.setText("Books");
+        rp_Book.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_BookActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Book);
 
         rp_Magazine.setText("Magazines");
@@ -296,7 +301,7 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(rp_Magazine);
         jMenu6.add(jSeparator7);
 
-        rp_Loans.setText("Loans");
+        rp_Loans.setText("Loans and Returns");
         rp_Loans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rp_LoansActionPerformed(evt);
@@ -327,9 +332,6 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //--------------------------------------------------------------------------
-    private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
-    }//GEN-LAST:event_rp_LoansActionPerformed
 
     //User classes
     //--------------------------------------------------------------------------
@@ -458,6 +460,7 @@ public class Main extends javax.swing.JFrame {
         data.saveUsers();
         data.saveStudent();
         data.saveMagazine();
+        data.saveBook();
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -482,6 +485,16 @@ public class Main extends javax.swing.JFrame {
          JInternalFrame report_magazine = new Report_Magazine(this,data);
          waterfall(report_magazine, evt);
     }//GEN-LAST:event_rp_MagazineActionPerformed
+
+    private void rp_BookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_BookActionPerformed
+        JInternalFrame report_book = new Report_Book(this, data);
+        waterfall(report_book, evt);
+    }//GEN-LAST:event_rp_BookActionPerformed
+
+    private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
+        JInternalFrame report_loan = new Report_LoanReturns(this, data);
+        waterfall(report_loan, evt);
+    }//GEN-LAST:event_rp_LoansActionPerformed
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
@@ -519,10 +532,6 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     public JMenuItem getLoans() {
         return loans;
-    }
-    
-    public void closed (){
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     //--------------------------------------------------------------------------

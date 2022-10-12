@@ -228,6 +228,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Books"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_BookActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rp_Magazine">
               <Properties>
@@ -241,7 +244,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rp_Loans">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Loans"/>
+                <Property name="text" type="java.lang.String" value="Loans and Returns"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_LoansActionPerformed"/>

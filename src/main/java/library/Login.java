@@ -35,7 +35,7 @@ public class Login extends JDialog {
 
         this.setLayout(null);
 
-        JLabel user = new JLabel("User Name");
+        JLabel user = new JLabel("User Id");
         user.setBounds(20, 20, 80, 20);
 
         JLabel pass = new JLabel("Password");
@@ -66,7 +66,6 @@ public class Login extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main.dispose();
-                main.closed();
             }
         });
         bt_ok.addActionListener(new ActionListener() {
@@ -75,11 +74,24 @@ public class Login extends JDialog {
                 if (name(tf_id.getText(), pf_pass.getText()) == true) {
                     dispose();
                 } else {
-                    main.closed();
+                    main.dispose();
                 }
             }
         }); 
-        
+        addWindowListener( new WindowListener(){
+            public void windowOpened(WindowEvent e) {}
+            //---------------------------------------------------------
+            public void windowClosing(WindowEvent e) {
+                main.dispose();
+            }
+            //---------------------------------------------------------
+            public void windowClosed(WindowEvent e) {}
+            public void windowIconified(WindowEvent e) {}
+            public void windowDeiconified(WindowEvent e) {}
+            public void windowActivated(WindowEvent e) {}
+            public void windowDeactivated(WindowEvent e) {}
+            
+        });
     }
 
     private static boolean name(String n, String pass) {

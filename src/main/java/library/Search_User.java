@@ -57,10 +57,12 @@ public class Search_User extends javax.swing.JInternalFrame {
             }
         });
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
+
+        jl_ima.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,7 +151,7 @@ public class Search_User extends javax.swing.JInternalFrame {
         else if (data.search_user(tf_id.getText())){
             int i = 0;
             String[] inf = new String[4];
-            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+            StringTokenizer aux = new StringTokenizer(data.getUser(tf_id.getText()), "\n");
 
             while (aux.hasMoreElements() ){
                 inf[i] = aux.nextToken();
@@ -175,7 +177,7 @@ public class Search_User extends javax.swing.JInternalFrame {
         else if (data.search_user(tf_id.getText())){
             int i = 0;
             String[] inf = new String[4];
-            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+            StringTokenizer aux = new StringTokenizer(data.getUser(tf_id.getText()), "\n");
 
             while (aux.hasMoreElements() ){
                 inf[i] = aux.nextToken();
