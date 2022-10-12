@@ -28,7 +28,6 @@ public class New_Book extends javax.swing.JInternalFrame {
         this.data = data;
         inf_icon ="Icon_Book/cienciasNaturales.png";
         cb_subjects.setSelectedIndex(0);
-       
     }
 
    
@@ -50,8 +49,6 @@ public class New_Book extends javax.swing.JInternalFrame {
         lb_stock = new javax.swing.JLabel();
         tf_stock = new javax.swing.JTextField();
         cb_subjects = new javax.swing.JComboBox<>();
-        lb_state = new javax.swing.JLabel();
-        cb_state = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         lb_icon = new javax.swing.JLabel();
         lb_subjects = new javax.swing.JLabel();
@@ -84,10 +81,6 @@ public class New_Book extends javax.swing.JInternalFrame {
             }
         });
 
-        lb_state.setText("State");
-
-        cb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -116,15 +109,10 @@ public class New_Book extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lb_subjects)
-                            .addGap(18, 18, 18)
-                            .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lb_state, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(cb_state, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lb_subjects)
+                        .addGap(18, 18, 18)
+                        .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lb_codebook)
                     .addComponent(lb_namebook)
                     .addComponent(lb_stock))
@@ -147,10 +135,11 @@ public class New_Book extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_codebook)
-                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chb_codebook))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chb_codebook)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb_codebook)
+                        .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_namebook)
@@ -162,14 +151,9 @@ public class New_Book extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_subjects))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_state))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cb_subjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lb_subjects)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -245,7 +229,6 @@ public class New_Book extends javax.swing.JInternalFrame {
             tf_stock.setEnabled(true);
             bt_add.setEnabled(true);
             cb_subjects.setEnabled(true);
-            cb_state.setEnabled(true);
             tf_codebook.setEnabled(false);
             chb_codebook.setSelected(true);
         }
@@ -262,10 +245,10 @@ public class New_Book extends javax.swing.JInternalFrame {
         
         if (tf_codebook.getText().trim().equals("") ||
             tf_namebook.getText().trim().equals("") ||
-            tf_stock.getText().trim().equals("")) {
+            tf_stock.getText().trim().equals(""))
             JOptionPane.showMessageDialog(null, "!!Complete the data¡¡");
             
-        }else if(data.search_Book(tf_codebook.getText()))
+        else if(data.search_Book(tf_codebook.getText()))
             JOptionPane.showMessageDialog(null, "The book is already registered");
             
         else{
@@ -276,9 +259,10 @@ public class New_Book extends javax.swing.JInternalFrame {
             
             if ( numStok ){
                 data.addBook(tf_codebook.getText(), tf_namebook.getText(), 
-                                 tf_stock.getText(), "0", inf_icon);
+                             tf_stock.getText(), "0", inf_icon, "1");
                 JOptionPane.showMessageDialog(null, "Registered book");
                 dispose();
+                
             }else
                JOptionPane.showMessageDialog(null, "!!Invalid Stock¡¡"); 
         }
@@ -339,7 +323,8 @@ public class New_Book extends javax.swing.JInternalFrame {
                             .getImage("Icon_Book/spanish.png")
                             .getScaledInstance(120,80,Image.SCALE_SMOOTH)));
             inf_icon = "Icon_Book/spanish.png";
-        }else if(cb_subjects.getSelectedIndex() == 6){
+            
+        }else{
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
                             .getImage("Icon_Book/other.png")
                             .getScaledInstance(120, 80, Image.SCALE_SMOOTH)));
@@ -351,7 +336,6 @@ public class New_Book extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;
     private javax.swing.JButton bt_cancel;
-    private javax.swing.JComboBox<String> cb_state;
     private javax.swing.JComboBox<String> cb_subjects;
     private javax.swing.JCheckBox chb_codebook;
     private javax.swing.JPanel jPanel1;
@@ -360,7 +344,6 @@ public class New_Book extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb_codebook;
     private javax.swing.JLabel lb_icon;
     private javax.swing.JLabel lb_namebook;
-    private javax.swing.JLabel lb_state;
     private javax.swing.JLabel lb_stock;
     private javax.swing.JLabel lb_subjects;
     private javax.swing.JTextField tf_codebook;

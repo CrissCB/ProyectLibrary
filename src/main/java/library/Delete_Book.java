@@ -4,6 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -16,6 +20,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     private Data data;
+    
     //-------------------------------------------------------------------------- 
     public Delete_Book(Main main, Data data) {
         initComponents();
@@ -36,6 +41,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_info = new javax.swing.JTextArea();
         pn_icon = new javax.swing.JPanel();
+        lb_icon = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         bt_search = new javax.swing.JButton();
         bt_delete = new javax.swing.JButton();
@@ -49,9 +55,9 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         setTitle("Delete Book");
         setVisible(true);
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
 
         pn_icon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -61,10 +67,14 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         pn_iconLayout.setHorizontalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 93, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
         );
         pn_iconLayout.setVerticalGroup(
             pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 118, Short.MAX_VALUE)
+            .addGroup(pn_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -88,8 +98,14 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         );
 
         bt_search.setText("Search");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
+            }
+        });
 
         bt_delete.setText("Delete");
+        bt_delete.setEnabled(false);
         bt_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_deleteActionPerformed(evt);
@@ -129,6 +145,12 @@ public class Delete_Book extends javax.swing.JInternalFrame {
 
         lb_codebook.setText("Code Book");
 
+        tf_codebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codebookActionPerformed(evt);
+            }
+        });
+
         chb_codebook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chb_codebookActionPerformed(evt);
@@ -160,10 +182,11 @@ public class Delete_Book extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_codebook)
-                    .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chb_codebook))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chb_codebook, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb_codebook)
+                        .addComponent(tf_codebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,32 +204,109 @@ public class Delete_Book extends javax.swing.JInternalFrame {
 
     private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
         // TODO add your handling code here:
-        if (data.search_Book(tf_codebook.getText())) {
-            data.removeBook(tf_codebook.getText());
-            JOptionPane.showMessageDialog(null, "("+tf_codebook.getText()+") book removed successfully");
-            ta_info.setText("");
-            tf_codebook.setText("");
-            bt_delete.setEnabled(false);
-            chb_codebook.setSelected(false);
-            tf_codebook.setEnabled(true);
-        }else
-            JOptionPane.showMessageDialog(null, "The book isn't registered");
+        JOptionPane.showMessageDialog(null, "("+tf_codebook.getText()+") book removed successfully");
+        data.removeBook(tf_codebook.getText());
+        ta_info.setText("");
+        tf_codebook.setText("");
+        bt_delete.setEnabled(false);
+        lb_icon.setIcon(null);
+        chb_codebook.setSelected(false);
+        tf_codebook.setEnabled(true);
     }//GEN-LAST:event_bt_deleteActionPerformed
 
     private void chb_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_codebookActionPerformed
-        // TODO add your handling code here:
-        if (tf_codebook.getText().trim().equals(""))
+        if (chb_codebook.isSelected()) {
+            if (data.search_Book(tf_codebook.getText())) {
+                bt_delete.setEnabled(true);
+                tf_codebook.setEnabled(false);
+                
+                int i = 0;
+                String[] inf = new String[5];
+                StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+
+                while ( i < 5 ){
+                    inf[i] = aux.nextToken();
+                    i++;
+                }
+
+                lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                                .getImage(inf[4])
+                                .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+
+                ta_info.setText("Code Book:   "+inf[0]+
+                                "\nName Book:    "+inf[1]+
+                                "\nStock Book:   "+inf[2]+
+                                "\nLoan Book: "+inf[3]);
+            }else
+                chb_codebook.setSelected(true);
+            
+        }else{
+            bt_delete.setEnabled(false);
+            tf_codebook.setEnabled(true);
+        }
+            
+    }//GEN-LAST:event_chb_codebookActionPerformed
+
+    private void tf_codebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codebookActionPerformed
+        if(tf_codebook.getText().trim().equals(""))
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
-        else if (data.search_Magazine(tf_codebook.getText())){
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] inf = new String[5];
+            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+
+            while ( i < 5 ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[4])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Code Book:   "+inf[0]+
+                            "\nName Book:    "+inf[1]+
+                            "\nStock Book:   "+inf[2]+
+                            "\nLoan Book: "+inf[3]);
+            
             bt_delete.setEnabled(true);
-            chb_codebook.setSelected(true);
             tf_codebook.setEnabled(false);
-            ta_info.setText(data.getMagazine(tf_codebook.getText()));
+            chb_codebook.setSelected(true);
             
         }else
             JOptionPane.showMessageDialog(null, "The book isn't registered");
-    }//GEN-LAST:event_chb_codebookActionPerformed
+    }//GEN-LAST:event_tf_codebookActionPerformed
+
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        // TODO add your handling code here:
+        if(tf_codebook.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_Book(tf_codebook.getText())){
+            int i = 0;
+            String[] inf = new String[5];
+            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+
+            while ( i < 5 ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[4])
+                            .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Code Book:   "+inf[0]+
+                            "\nName Book:    "+inf[1]+
+                            "\nStock Book:   "+inf[2]+
+                            "\nLoan Book: "+inf[3]);
+            bt_delete.setEnabled(true);
+            tf_codebook.setEnabled(false);
+            chb_codebook.setSelected(true);
+        }else
+            JOptionPane.showMessageDialog(null, "The book isn't registered");
+    }//GEN-LAST:event_bt_searchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -218,6 +318,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_codebook;
+    private javax.swing.JLabel lb_icon;
     private javax.swing.JPanel pn_icon;
     private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_codebook;

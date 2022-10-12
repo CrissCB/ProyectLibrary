@@ -420,20 +420,20 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void loansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansActionPerformed
         // TODO add your handling code here:
-        JInternalFrame loan = new Loans(this);
+        JInternalFrame loan = new Loans(this, data);
         waterfall(loan, evt);
     }//GEN-LAST:event_loansActionPerformed
     //--------------------------------------------------------------------------
     private void returnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsActionPerformed
         // TODO add your handling code here:
-        JInternalFrame returns = new Returns(this);
+        JInternalFrame returns = new Returns(this, data);
         waterfall(returns, evt);
 
     }//GEN-LAST:event_returnsActionPerformed
     //--------------------------------------------------------------------------
     private void searchingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchingActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Searching(this);
+        JInternalFrame search = new Searching(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchingActionPerformed
     //--------------------------------------------------------------------------

@@ -247,7 +247,7 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
             String[] aux = new String[6];
             StringTokenizer inf = new StringTokenizer(data.getMagazine(tf_numMagazine.getText()), "\n");
             
-            while (inf.hasMoreElements() ){
+            while ( i < 6 ){
                 aux[i] = inf.nextToken();
                 i++;
             }
@@ -315,11 +315,11 @@ public class Modify_Magazine extends javax.swing.JInternalFrame {
                 if (auxnum.equals(tf_numMagazine.getText()) || data.search_Magazine(tf_numMagazine.getText())) {
                     data.removeMagazine(tf_numMagazine.getText());
                     data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
-                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon ); 
+                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon, "1" ); 
                 }else{
                     data.removeMagazine(auxnum);
                     data.addMagazine(tf_numMagazine.getText(), tf_volume.getText(), 
-                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon );  
+                                 tf_date.getText(), tf_stock.getText(), tf_loan.getText(), inf_icon, "1" );  
                 }
                 
                 

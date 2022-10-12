@@ -105,9 +105,9 @@ public class Search_Book extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
-        ta_info.setEnabled(false);
         jScrollPane2.setViewportView(ta_info);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,23 +157,22 @@ public class Search_Book extends javax.swing.JInternalFrame {
         
         else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
-            String[] inf = new String[6];
+            String[] inf = new String[5];
             StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
 
-            while (aux.hasMoreElements() ){
+            while ( i < 5 ){
                 inf[i] = aux.nextToken();
                 i++;
             }
             
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(inf[5])
+                            .getImage(inf[4])
                             .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
             
             ta_info.setText("Code Book:   "+inf[0]+
                             "\nName Book:    "+inf[1]+
                             "\nStock Book:   "+inf[2]+
-                            "\nSubject Book: "+inf[3]+
-                            "\nLoan Book:   "+inf[4]);
+                            "\nLoan Book: "+inf[3]);
             
         }else
             JOptionPane.showMessageDialog(null, "The book isn't registered");
@@ -181,28 +180,27 @@ public class Search_Book extends javax.swing.JInternalFrame {
 
     private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
         // TODO add your handling code here:
-        if (tf_codebook.getText().trim().equals(""))
+        if(tf_codebook.getText().trim().equals(""))
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
-        else if (data.search_Magazine(tf_codebook.getText())){
+        else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
-            String[] inf = new String[6];
-            StringTokenizer aux = new StringTokenizer(data.getMagazine(tf_codebook.getText()), "\n");
+            String[] inf = new String[5];
+            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
 
-            while (aux.hasMoreElements() ){
+            while ( i < 5 ){
                 inf[i] = aux.nextToken();
                 i++;
             }
             
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(inf[5])
+                            .getImage(inf[4])
                             .getScaledInstance(100,80,Image.SCALE_SMOOTH)));
             
             ta_info.setText("Code Book:   "+inf[0]+
                             "\nName Book:    "+inf[1]+
                             "\nStock Book:   "+inf[2]+
-                            "\nSubject Book: "+inf[3]+
-                            "\nLoan Book:   "+inf[4]);
+                            "\nLoan Book: "+inf[3]);
             
         }else
             JOptionPane.showMessageDialog(null, "The book isn't registered");

@@ -15,13 +15,14 @@ public class Modify_Student extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     private Data data;
-    private String auxcod;
+    private String[] inf_student;
     private String inf_icon;
     //--------------------------------------------------------------------------
     public Modify_Student(Main main, Data data) {
         initComponents();
         this.main = main;
         this.data = data;
+        inf_student = new String[4];
     }
     //--------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
@@ -187,24 +188,22 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
         else if (data.search_Student(tf_code.getText())) {
-            auxcod = tf_code.getText();
             
             int i = 0;
-            String[] aux = new String[3];
             StringTokenizer inf = new StringTokenizer(data.getStudent(tf_code.getText()), "\n");
             
             while (inf.hasMoreElements()){
-                aux[i] = inf.nextToken();
+                inf_student[i]  =  inf.nextToken();
                 i++;
             }
             
-            inf_icon = aux[2];
+            inf_icon = inf_student[3];
             
             tf_name.setEnabled(true);
-            tf_name.setText(aux[1]);
+            tf_name.setText(inf_student[1]);
             cb_icon.setEnabled(true);
             lb_icon.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
-                            .getImage(aux[2])
+                            .getImage(inf_student[3])
                             .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
             bt_modify.setEnabled(true);
             
@@ -217,13 +216,8 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
         
         else{
-            if (auxcod.equals(tf_code.getText()) || data.search_Student(tf_code.getText())) {
-                    data.removeStudent(tf_code.getText());
-                    data.addStudent(tf_code.getText(), tf_name.getText(), inf_icon);
-                }else{
-                    data.removeStudent(auxcod);
-                    data.addStudent(tf_code.getText(), tf_name.getText(), inf_icon);  
-                }
+            data.removeStudent(tf_code.getText());
+            data.addStudent(tf_code.getText(), tf_name.getText(), inf_student[2], inf_icon);
             
             JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") is modify"); 
             bt_modify.setEnabled(false);

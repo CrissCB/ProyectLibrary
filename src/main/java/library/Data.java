@@ -110,8 +110,8 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[3];
-                for (int i = 0; i < 3; i++) {
+                String[] fields = new String[4];
+                for (int i = 0; i < 4; i++) {
                     fields[i] = tokens.nextToken();
                 }
                 students.add(fields);
@@ -137,8 +137,8 @@ public class Data {
         }
     }
 
-    public void addStudent(String code, String name, String icon) {
-        String fields[] = {code, name, icon};
+    public void addStudent(String code, String name, String loan, String icon) {
+        String fields[] = {code, name, loan, icon};
         students.add(fields);
     }
 
@@ -151,7 +151,8 @@ public class Data {
             if (code.equals(fields[0])) {
                 return fields[0] + "\n"
                         + fields[1]+ "\n"
-                        + fields[2];
+                        + fields[2]+ "\n"
+                        + fields[3];
             }
         }
         return "";
@@ -209,8 +210,8 @@ public class Data {
         }
     }
     
-    public void addBook(String codeBook, String nameBook,String stock, String subjects, String state){
-        String fields[] ={codeBook, nameBook, stock,subjects,state,"0"};
+    public void addBook(String codeBook, String nameBook, String stock, String loan, String subjects, String state){
+        String fields[] ={codeBook, nameBook, stock, loan, subjects, state};
         books.add(fields);
     }
     
@@ -232,8 +233,8 @@ public class Data {
     }
 
     public boolean search_Book(String codeBook){
-        for(String[] f_user : books){
-            if(f_user.equals(codeBook)){
+        for(String[] f_book : books){
+            if(f_book[0].equals(codeBook)){
                 return true;
             }
         }
@@ -257,8 +258,8 @@ public class Data {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
-                String[] fields = new String[6];
-                for (int i = 0; i < 6; i++)
+                String[] fields = new String[7];
+                for (int i = 0; i < 7; i++)
                     fields[i] = tokens.nextToken();
                 
                 magazines.add(fields);
@@ -284,8 +285,8 @@ public class Data {
         }
     }
 
-    public void addMagazine(String numMagazine, String volume, String date, String stock, String loan, String icon) {
-        String fields[] = {numMagazine, volume, date, stock, loan, icon};
+    public void addMagazine(String numMagazine, String volume, String date, String stock, String loan, String icon, String state) {
+        String fields[] = {numMagazine, volume, date, stock, loan, icon, state};
         magazines.add(fields);
     }
 
