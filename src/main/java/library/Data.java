@@ -64,8 +64,8 @@ public class Data {
         }
     }
 
-    public void addUser(String id, String name, String pass) {
-        String fields[] = {id, name, pass};
+    public void addUser(String id, String name, String pass,String icon) {
+        String fields[] = {id, name, pass,icon};
         users.add(fields);
     }
 
@@ -77,8 +77,9 @@ public class Data {
         for (String[] fields : users) {
             if (id.equals(fields[0])) {
                 return fields[0] + "\n"
-                        + fields[1] + "\n"
-                        + fields[2];
+                        + fields[1]+ "\n"
+                        + fields[2]+ "\n"
+                        + fields[3];
             }
         }
         return "";
@@ -87,6 +88,14 @@ public class Data {
     public boolean search_user(String id) {
         for (String[] f_user : users) {
             if (f_user[0].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean search_user_pass(String id,String pas) {
+        for (String[] f_user : users) {
+            if (f_user[0].equals(id) && f_user[2].equals(pas)) {
                 return true;
             }
         }

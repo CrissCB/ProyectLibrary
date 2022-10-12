@@ -1,6 +1,9 @@
 package library;
 
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class New_User extends javax.swing.JInternalFrame {
@@ -8,12 +11,15 @@ public class New_User extends javax.swing.JInternalFrame {
     //------------------------ATTRIBUTES
     private Main main;
     private Data data;
+    private String inf_icon;
 
     //--------------------------------------------------------------------------
     public New_User(Main main,Data dat) {
         this.main = main;
         this.data=dat;
         initComponents();
+        cb_user.setSelectedIndex(0);
+        inf_icon = "Icon_User/chico.png";
         setVisible(true);
     }
 
@@ -30,10 +36,12 @@ public class New_User extends javax.swing.JInternalFrame {
         jt_id = new javax.swing.JTextField();
         jt_name = new javax.swing.JTextField();
         ps_user = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         bt_add = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
+        chb_id = new javax.swing.JCheckBox();
+        cb_user = new javax.swing.JComboBox<>();
+        jl_image = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,7 +115,7 @@ public class New_User extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(bt_add, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -119,6 +127,19 @@ public class New_User extends javax.swing.JInternalFrame {
                     .addComponent(bt_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
+
+        chb_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_idActionPerformed(evt);
+            }
+        });
+
+        cb_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chico", "Chica", "Robot" }));
+        cb_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_userActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,7 +157,14 @@ public class New_User extends javax.swing.JInternalFrame {
                     .addComponent(jt_name)
                     .addComponent(ps_user))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_user, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -160,7 +188,11 @@ public class New_User extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(ps_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chb_id)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cb_user, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -188,7 +220,18 @@ public class New_User extends javax.swing.JInternalFrame {
 
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         // TODO add your handling code here:
-        data.addUser(jt_id.getText(), jt_name.getText(), ps_user.getText());
+        if (jt_id.getText().trim().equals("") || jt_name.getText().trim().equals("")
+                || ps_user.getText().equals("")) 
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if(data.search_user(jt_id.getText()))
+            JOptionPane.showMessageDialog(null, "you are already registered");
+        
+        else{
+            data.addUser(jt_id.getText(), jt_name.getText(),ps_user.getText(), inf_icon);
+            JOptionPane.showMessageDialog(null, "Registered User");
+            dispose();
+        }
         
     }//GEN-LAST:event_bt_addActionPerformed
     //--------------------------------------------------------------------------
@@ -207,12 +250,14 @@ public class New_User extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (jt_id.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
-        } else if (data.search_user(jt_id.getText()) == true) {
+        } else if (data.search_user(jt_id.getText())) {
             JOptionPane.showMessageDialog(null, "Are you already registered");
         } else {
+            chb_id.setSelected(true);
             jt_name.setEnabled(true);
             ps_user.setEnabled(true);
             bt_add.setEnabled(true);
+            jt_id.setEnabled(false);
         }
     }//GEN-LAST:event_jt_idActionPerformed
 
@@ -220,16 +265,54 @@ public class New_User extends javax.swing.JInternalFrame {
         // TODO add your handling code here
     }//GEN-LAST:event_formInternalFrameActivated
 
+    private void chb_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_idActionPerformed
+        if (chb_id.isSelected()) {
+            jt_name.setEnabled(true);
+            jt_id.setEnabled(false);
+            bt_add.setEnabled(true);
+            cb_user.setEnabled(true);
+        }else{
+            jt_name.setEnabled(false);
+            jt_id.setEnabled(true);
+            bt_add.setEnabled(false);
+            cb_user.setEnabled(false);
+        }
+    }//GEN-LAST:event_chb_idActionPerformed
+
+    private void cb_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_userActionPerformed
+        // TODO add your handling code here:
+        if (cb_user.getSelectedIndex() == 0) {
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_User/chico.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/chico.png";
+            
+        }else if (cb_user.getSelectedIndex() == 1) {
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_User/chica.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/chica.png";
+            
+        }else{
+            jl_image.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage("Icon_User/robot.png")
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            inf_icon = "Icon_User/robot.png";            
+        } 
+    }//GEN-LAST:event_cb_userActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;
     private javax.swing.JButton bt_cancel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cb_user;
+    private javax.swing.JCheckBox chb_id;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jl_image;
     private javax.swing.JTextField jt_id;
     private javax.swing.JTextField jt_name;
     private javax.swing.JPasswordField ps_user;

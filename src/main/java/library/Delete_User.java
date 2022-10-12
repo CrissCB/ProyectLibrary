@@ -4,6 +4,10 @@
  */
 package library;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.StringTokenizer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +41,9 @@ public class Delete_User extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         tf_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_info = new javax.swing.JTextArea();
+        chb_user = new javax.swing.JCheckBox();
+        jl_ima = new javax.swing.JLabel();
         bt_remove = new javax.swing.JButton();
         bt_cancel = new javax.swing.JButton();
 
@@ -54,38 +60,53 @@ public class Delete_User extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ta_info.setColumns(20);
+        ta_info.setRows(5);
+        jScrollPane1.setViewportView(ta_info);
+
+        chb_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb_userActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jl_ima, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_id)
+                        .addGap(18, 18, 18)
+                        .addComponent(chb_user)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chb_user)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_ima, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        bt_remove.setText("Search");
+        bt_remove.setText("Delete");
         bt_remove.setEnabled(false);
         bt_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,13 +127,15 @@ public class Delete_User extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bt_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bt_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(bt_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +154,21 @@ public class Delete_User extends javax.swing.JInternalFrame {
 
     private void bt_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_removeActionPerformed
         // TODO add your handling code here:
-        data.removeUser(tf_id.getText());
+       if (tf_id.getText().trim().equals("")) 
+            JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        
+        else if (data.search_user(tf_id.getText())) {
+            data.removeUser(tf_id.getText());
+            JOptionPane.showMessageDialog(null, "("+tf_id.getText()+") user removed successfully");
+            tf_id.setEnabled(true);
+            tf_id.setText("");
+            ta_info.setText("");
+            bt_remove.setEnabled(false);
+            chb_user.setSelected(false);
+            jl_ima.setIcon(null);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "The user isn't registered");
     }//GEN-LAST:event_bt_removeActionPerformed
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelActionPerformed
@@ -143,25 +180,54 @@ public class Delete_User extends javax.swing.JInternalFrame {
     private void tf_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idActionPerformed
         // TODO add your handling code here:  
         if (tf_id.getText().equals("")) {
-            jTextArea1.setText("It is empty, re-enter data ");
-        }
-        if (data.search_user(tf_id.getText())==true) {
-            String cont = data.getUsers(tf_id.getText());
-            jTextArea1.setText(cont);
+           JOptionPane.showMessageDialog(null, "It is empty, re-enter data");
+        }else if (data.search_user(tf_id.getText())) {
+            tf_id.setEnabled(false);
+            chb_user.setSelected(true);
             bt_remove.setEnabled(true);
-        } else {
-            jTextArea1.setText("It is not registered");
-        }
+            
+            int i = 0;
+            String[] inf = new String[4];
+            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+
+            while (aux.hasMoreElements() ){
+                inf[i] = aux.nextToken();
+                i++;
+            }
+            
+            jl_ima.setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+                            .getImage(inf[3])
+                            .getScaledInstance(70,70,Image.SCALE_SMOOTH)));
+            
+            ta_info.setText("Id User:  "+inf[0]+
+                            "\n Name User: "+inf[1]+
+                            "\n Password User: "+inf[2]);
+        
+        }else
+            JOptionPane.showMessageDialog(null, "The user isn't registered");
     }//GEN-LAST:event_tf_idActionPerformed
+
+    private void chb_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb_userActionPerformed
+        // TODO add your handling code here:
+        if (chb_user.isSelected()) {
+            tf_id.setEnabled(false);
+            bt_remove.setEnabled(true);
+        }else{
+            tf_id.setEnabled(true);
+            bt_remove.setEnabled(false);
+        }
+    }//GEN-LAST:event_chb_userActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_remove;
+    private javax.swing.JCheckBox chb_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jl_ima;
+    private javax.swing.JTextArea ta_info;
     private javax.swing.JTextField tf_id;
     // End of variables declaration//GEN-END:variables
 }

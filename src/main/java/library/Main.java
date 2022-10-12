@@ -7,8 +7,10 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 public class Main extends javax.swing.JFrame {
+
     //--------------------------------------------------------------------------
     private Data data;
+
     //--------------------------------------------------------------------------
     public Main() {
         data = new Data();
@@ -69,6 +71,9 @@ public class Main extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -204,19 +209,10 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu4.add(newMagazine);
 
-        deleteMagazine.setText("Delete Magazine");
-        deleteMagazine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteMagazineActionPerformed(evt);
-            }
-        });
-        jMenu4.add(deleteMagazine);
-        jMenu4.add(jSeparator4);
-
         searchMagazine.setText("Search Magazine");
         searchMagazine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchMagazineActionPerformed(evt);
+                deleteMagazineActionPerformed(evt);
             }
         });
         jMenu4.add(searchMagazine);
@@ -225,12 +221,17 @@ public class Main extends javax.swing.JFrame {
         setMagazine.setText("Modify Magazine");
         setMagazine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setMagazineActionPerformed(evt);
+                searchMagazineActionPerformed(evt);
             }
         });
         jMenu4.add(setMagazine);
 
         deleteMagazine.setText("Delete Magazine");
+        deleteMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setMagazineActionPerformed(evt);
+            }
+        });
         jMenu4.add(deleteMagazine);
 
         jMenuBar1.add(jMenu4);
@@ -267,9 +268,19 @@ public class Main extends javax.swing.JFrame {
         jMenu6.setText("Report");
 
         rp_User.setText("Users");
+        rp_User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_UserActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_User);
 
         rp_Student.setText("Students");
+        rp_Student.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_StudentActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Student);
         jMenu6.add(jSeparator6);
 
@@ -277,6 +288,11 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(rp_Book);
 
         rp_Magazine.setText("Magazines");
+        rp_Magazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_MagazineActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Magazine);
         jMenu6.add(jSeparator7);
 
@@ -314,7 +330,7 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
     }//GEN-LAST:event_rp_LoansActionPerformed
-    
+
     //User classes
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -324,19 +340,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_newUserActionPerformed
     //--------------------------------------------------------------------------
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        JInternalFrame delete = new Delete_User(this,data);
+        JInternalFrame delete = new Delete_User(this, data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteUserActionPerformed
     //--------------------------------------------------------------------------
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_User(this);
+        JInternalFrame search = new Search_User(this, data);
         waterfall(search, evt);
     }//GEN-LAST:event_searchUserActionPerformed
     //--------------------------------------------------------------------------
     private void setUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_User(this,data);
+        JInternalFrame modify = new Modify_User(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setUserActionPerformed
 
@@ -366,7 +382,7 @@ public class Main extends javax.swing.JFrame {
         JInternalFrame modify = new Modify_Student(this, data);
         waterfall(modify, evt);
     }//GEN-LAST:event_setStudentActionPerformed
-    
+
     //Book Classes
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -390,7 +406,7 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void deleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookActionPerformed
         // TODO add your handling code here:
-         JInternalFrame delete = new Delete_Book(this,data);
+         JInternalFrame delete = new Delete_Book(this, data);
         waterfall(delete, evt);
     }//GEN-LAST:event_deleteBookActionPerformed
     private void newMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMagazineActionPerformed
@@ -440,7 +456,32 @@ public class Main extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         data.saveUsers();
+        data.saveStudent();
+        data.saveMagazine();
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        new Login(this,data);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void rp_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_UserActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_user = new Report_User(this,data);
+         waterfall(report_user, evt);
+    }//GEN-LAST:event_rp_UserActionPerformed
+
+    private void rp_StudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_StudentActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_student = new Report_Student(this,data);
+         waterfall(report_student, evt);
+    }//GEN-LAST:event_rp_StudentActionPerformed
+
+    private void rp_MagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_MagazineActionPerformed
+        // TODO add your handling code here:
+         JInternalFrame report_magazine = new Report_Magazine(this,data);
+         waterfall(report_magazine, evt);
+    }//GEN-LAST:event_rp_MagazineActionPerformed
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
@@ -474,10 +515,16 @@ public class Main extends javax.swing.JFrame {
         });
 
     }
+
     //--------------------------------------------------------------------------
     public JMenuItem getLoans() {
         return loans;
     }
+    
+    public void closed (){
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
     //--------------------------------------------------------------------------
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
