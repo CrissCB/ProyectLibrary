@@ -222,7 +222,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
                 
                 int i = 0;
                 String[] inf = new String[5];
-                StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+                StringTokenizer aux = new StringTokenizer(data.getBook(tf_codebook.getText()), "\n");
 
                 while ( i < 5 ){
                     inf[i] = aux.nextToken();
@@ -254,7 +254,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
             String[] inf = new String[5];
-            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            StringTokenizer aux = new StringTokenizer(data.getBook(tf_codebook.getText()), "\n");
 
             while ( i < 5 ){
                 inf[i] = aux.nextToken();
@@ -286,7 +286,7 @@ public class Delete_Book extends javax.swing.JInternalFrame {
         else if (data.search_Book(tf_codebook.getText())){
             int i = 0;
             String[] inf = new String[5];
-            StringTokenizer aux = new StringTokenizer(data.getBooks(tf_codebook.getText()), "\n");
+            StringTokenizer aux = new StringTokenizer(data.getBook(tf_codebook.getText()), "\n");
 
             while ( i < 5 ){
                 inf[i] = aux.nextToken();

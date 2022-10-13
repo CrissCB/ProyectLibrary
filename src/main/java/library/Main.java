@@ -1,3 +1,9 @@
+/*
+* Cristian Camilo Burgos        221034036
+* Jimena Catalina Cabrera      221034027
+* Eliana Jackeline Zambrano   221034037
+*/
+
 package library;
 
 import java.beans.PropertyVetoException;
@@ -18,6 +24,7 @@ public class Main extends javax.swing.JFrame {
         data.loadStudent();
         data.loadBook();
         data.loadMagazine();
+        data.loadReport();
         initComponents();
     }
 
@@ -285,6 +292,11 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(jSeparator6);
 
         rp_Book.setText("Books");
+        rp_Book.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rp_BookActionPerformed(evt);
+            }
+        });
         jMenu6.add(rp_Book);
 
         rp_Magazine.setText("Magazines");
@@ -296,7 +308,7 @@ public class Main extends javax.swing.JFrame {
         jMenu6.add(rp_Magazine);
         jMenu6.add(jSeparator7);
 
-        rp_Loans.setText("Loans");
+        rp_Loans.setText("Loans and Returns");
         rp_Loans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rp_LoansActionPerformed(evt);
@@ -327,9 +339,6 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //--------------------------------------------------------------------------
-    private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
-    }//GEN-LAST:event_rp_LoansActionPerformed
 
     //User classes
     //--------------------------------------------------------------------------
@@ -417,20 +426,20 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void deleteMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame delete = new Delete_Magazine(this, data);
-        waterfall(delete, evt);
+        JInternalFrame search = new Search_Magazine(this, data);
+        waterfall(search, evt);
     }//GEN-LAST:event_deleteMagazineActionPerformed
     //--------------------------------------------------------------------------
     private void searchMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_Magazine(this, data);
-        waterfall(search, evt);
+        JInternalFrame set = new Modify_Magazine(this, data);
+        waterfall(set, evt);
     }//GEN-LAST:event_searchMagazineActionPerformed
     //--------------------------------------------------------------------------
     private void setMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_Magazine(this, data);
-        waterfall(modify, evt);
+        JInternalFrame delete = new Delete_Magazine(this, data);
+        waterfall(delete, evt);
     }//GEN-LAST:event_setMagazineActionPerformed
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -458,6 +467,8 @@ public class Main extends javax.swing.JFrame {
         data.saveUsers();
         data.saveStudent();
         data.saveMagazine();
+        data.saveBook();
+        data.saveReport();
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -482,6 +493,16 @@ public class Main extends javax.swing.JFrame {
          JInternalFrame report_magazine = new Report_Magazine(this,data);
          waterfall(report_magazine, evt);
     }//GEN-LAST:event_rp_MagazineActionPerformed
+
+    private void rp_BookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_BookActionPerformed
+        JInternalFrame report_book = new Report_Book(this, data);
+        waterfall(report_book, evt);
+    }//GEN-LAST:event_rp_BookActionPerformed
+
+    private void rp_LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_LoansActionPerformed
+        JInternalFrame report_loan = new Report_LoanReturns(this, data);
+        waterfall(report_loan, evt);
+    }//GEN-LAST:event_rp_LoansActionPerformed
     //-------------------------------------------------------------------------- 
     //--------------------------------------------------------------------------
     //It serves so that the windows open in the form of a waterfall
@@ -519,10 +540,6 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     public JMenuItem getLoans() {
         return loans;
-    }
-    
-    public void closed (){
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     //--------------------------------------------------------------------------

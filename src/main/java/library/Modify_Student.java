@@ -199,6 +199,7 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             
             inf_icon = inf_student[3];
             
+            tf_code.setEnabled(false);
             tf_name.setEnabled(true);
             tf_name.setText(inf_student[1]);
             cb_icon.setEnabled(true);
@@ -220,6 +221,8 @@ public class Modify_Student extends javax.swing.JInternalFrame {
             data.addStudent(tf_code.getText(), tf_name.getText(), inf_student[2], inf_icon);
             
             JOptionPane.showMessageDialog(null, "("+tf_code.getText()+") is modify"); 
+            
+            tf_code.setEnabled(true);
             bt_modify.setEnabled(false);
             tf_name.setText("");
             tf_name.setEnabled(false);

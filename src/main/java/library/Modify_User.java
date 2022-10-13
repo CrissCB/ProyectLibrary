@@ -222,13 +222,15 @@ public class Modify_User extends javax.swing.JInternalFrame {
             
             int i = 0;
             String[] aux = new String[4];
-            StringTokenizer inf = new StringTokenizer(data.getUsers(tf_new_id.getText()), "\n");
+            StringTokenizer inf = new StringTokenizer(data.getUser(tf_new_id.getText()), "\n");
             
             while (inf.hasMoreElements()){
                 aux[i] = inf.nextToken();
                 i++;
             }            
-            inf_icon = aux[3];            
+            inf_icon = aux[3];   
+            
+            tf_new_id.setEnabled(false);
             tf_ne_name.setEnabled(true);
             tf_ne_name.setText(aux[1]);
             ps_new_1.setEnabled(true);
@@ -262,6 +264,7 @@ public class Modify_User extends javax.swing.JInternalFrame {
                 }
             
             JOptionPane.showMessageDialog(null, "("+tf_new_id.getText()+") is modify"); 
+            tf_new_id.setEnabled(true);
             bt_modify.setEnabled(false);
             tf_ne_name.setText("");
             tf_ne_name.setEnabled(false);

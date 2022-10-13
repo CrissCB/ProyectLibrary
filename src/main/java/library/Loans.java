@@ -4,7 +4,10 @@
  */
 package library;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 
@@ -234,6 +237,13 @@ public class Loans extends javax.swing.JInternalFrame {
                         for (String[] field : student) {
                             if (x == cb_student.getSelectedIndex()) {
                                 field[2] = (loan + Integer.parseInt(field[2])) +"";
+                               
+                                String format = cl_calendar.getDateFormatString();
+                                Date date = cl_calendar.getDate();
+                                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                                String fnacim = String.valueOf(sdf.format(date));
+                                
+                                data.addReport(fnacim, field[0] ,fields[0], "1");
                                 student.set(x, field);
                                 break;
                             }
@@ -259,6 +269,14 @@ public class Loans extends javax.swing.JInternalFrame {
                         for (String[] field : student) {
                             if (x == cb_student.getSelectedIndex()) {
                                 field[2] = (loan + Integer.parseInt(field[2])) +"";
+                                
+                                String format = cl_calendar.getDateFormatString();
+                                Date date = cl_calendar.getDate();
+                                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                                String fnacim = String.valueOf(sdf.format(date));
+                                
+                                data.addReport(fnacim, field[0] ,fields[0], "1");
+                                
                                 student.set(x, field);
                                 break;
                             }

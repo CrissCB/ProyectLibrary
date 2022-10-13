@@ -60,8 +60,10 @@ public class Delete_User extends javax.swing.JInternalFrame {
             }
         });
 
+        ta_info.setEditable(false);
         ta_info.setColumns(20);
         ta_info.setRows(5);
+        ta_info.setEnabled(false);
         jScrollPane1.setViewportView(ta_info);
 
         chb_user.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +71,8 @@ public class Delete_User extends javax.swing.JInternalFrame {
                 chb_userActionPerformed(evt);
             }
         });
+
+        jl_ima.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,20 +89,19 @@ public class Delete_User extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(tf_id)
-                        .addGap(18, 18, 18)
-                        .addComponent(chb_user)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chb_user)
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chb_user)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel1)
+                    .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chb_user))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +191,7 @@ public class Delete_User extends javax.swing.JInternalFrame {
             
             int i = 0;
             String[] inf = new String[4];
-            StringTokenizer aux = new StringTokenizer(data.getUsers(tf_id.getText()), "\n");
+            StringTokenizer aux = new StringTokenizer(data.getUser(tf_id.getText()), "\n");
 
             while (aux.hasMoreElements() ){
                 inf[i] = aux.nextToken();
