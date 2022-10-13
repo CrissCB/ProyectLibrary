@@ -22,12 +22,14 @@ public class Data {
     protected ArrayList<String[]> students;
     protected ArrayList<String[]> books;
     protected ArrayList<String[]> magazines;
+    protected ArrayList<String[]> report_LoansReturns;
     //--------------------------------------------------------------------------
     public Data() {
         users     = new ArrayList<>();
         students  = new ArrayList<>();
         books     = new ArrayList<>();
         magazines = new ArrayList<>();
+        report_LoansReturns = new ArrayList<>();
     }
     //--------------------------------------------------------------------------
     public void loadUsers() {
@@ -147,6 +149,7 @@ public class Data {
 
     public void addStudent(String code, String name, String loan, String icon) {
         String fields[] = {code, name, loan, icon};
+        
         students.add(fields);
     }
 
@@ -330,6 +333,81 @@ public class Data {
             //si encontro el magazine
             if (numMagazine.equals(fields[0])){
                 magazines.remove(fields);
+                break;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    public void loadReport() {
+        File file = new File("data/report.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[5];
+                for (int i = 0; i < 5; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                report_LoansReturns.add(fields);
+            }
+        } catch (FileNotFoundException ex) {
+        }
+    }
+
+    public void saveReport() {
+        try {
+            FileWriter file = new FileWriter("data/report.data");
+            for (String[] student : report_LoansReturns) {
+                String tokens = "";
+                for (String field : student) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    public void addReport(String dateLoan, String code_Student, String code_article, String state) {
+        String fields[] = {dateLoan, code_Student, code_article, state, "7 Days"};
+        
+        report_LoansReturns.add(fields);
+    }
+
+    public ArrayList<String[]> getReports() {
+        return report_LoansReturns;
+    }
+
+    public String getReport(String code) {
+        for (String[] fields : report_LoansReturns) {
+            if (code.equals(fields[0])) {
+                return fields[0] + "\n"
+                        + fields[1]+ "\n"
+                        + fields[2]+ "\n"
+                        + fields[3]+ "\n"
+                        + fields[4];
+            }
+        }
+        return "";
+    }
+
+    public boolean search_Report(String code) {
+        for (String[] f_report : report_LoansReturns) {
+            if (f_report[0].equals(code)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeReport(String code) {
+        for (String[] fields : report_LoansReturns) {
+            //si encontro al estudiante
+            if (code.equals(fields[0])){
+                report_LoansReturns.remove(fields);
                 break;
             }
         }

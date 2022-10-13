@@ -9,7 +9,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author Crist
+ * 
  */
 public class Report_LoanReturns extends javax.swing.JInternalFrame {
 
@@ -45,17 +45,17 @@ public class Report_LoanReturns extends javax.swing.JInternalFrame {
 
         tb_loan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Date loans", "Code Student", "Code Article", "Date returns"
+                "Date loans", "Code Student", "Code Article", "State", "Max Term"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,11 +99,11 @@ public class Report_LoanReturns extends javax.swing.JInternalFrame {
         tb_loan.setModel(new TableModel() {
             @Override            
             public int getRowCount() {
-                return data.getMagazines().size();
+                return data.getReports().size();
             }
             @Override            
             public int getColumnCount() {
-                return 4;
+                return 5;
             }
             @Override
             public String getColumnName(int columnIndex) {
@@ -111,7 +111,8 @@ public class Report_LoanReturns extends javax.swing.JInternalFrame {
                     case 0:return "Date loan";
                     case 1:return "Code Student";
                     case 2:return "Code Article";
-                    case 3:return "Date return";
+                    case 3:return "State";
+                    case 4:return "Max Term";
                     default:return "";
                 }
             }
@@ -130,7 +131,7 @@ public class Report_LoanReturns extends javax.swing.JInternalFrame {
             @Override
            
             public Object getValueAt(int rowIndex, int columnIndex) {
-                return data.getMagazines().get(rowIndex)[columnIndex];
+                return data.getReports().get(rowIndex)[columnIndex];
             }
 
             @Override

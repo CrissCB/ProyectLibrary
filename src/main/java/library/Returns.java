@@ -4,7 +4,9 @@
  */
 package library;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -228,7 +230,7 @@ public class Returns extends javax.swing.JInternalFrame {
                         
                         for (String[] magazine : inf) {
                             if (x == cb_codeArticle.getSelectedIndex()) {
-                            
+                                
                                 if ( Integer.parseInt(magazine[4]) < Integer.parseInt(fields[2]) )
                                     while (stock <= Integer.parseInt(magazine[4])){
                                         cb_stock.addItem(""+stock);
@@ -240,6 +242,13 @@ public class Returns extends javax.swing.JInternalFrame {
                                         stock++;
                                     }
                                 
+                                String format = cl_calendar.getDateFormatString();
+                                Date date = cl_calendar.getDate();
+                                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                                String fnacim = String.valueOf(sdf.format(date));
+                                
+                                data.addReport(fnacim, fields[0] ,magazine[0], "0");
+                                
                                 break;
                             }
                             x++;
@@ -248,7 +257,7 @@ public class Returns extends javax.swing.JInternalFrame {
                         
                         for (String[] book : inf) {
                             if (x == cb_codeArticle.getSelectedIndex()) {
-                            
+                                
                                 if ( Integer.parseInt(book[3]) < Integer.parseInt(fields[2]) )
                                     while (stock <= Integer.parseInt(book[3])){
                                         cb_stock.addItem(""+stock);
@@ -259,7 +268,12 @@ public class Returns extends javax.swing.JInternalFrame {
                                         cb_stock.addItem(""+stock);
                                         stock++;
                                     }
-     
+                                String format = cl_calendar.getDateFormatString();
+                                Date date = cl_calendar.getDate();
+                                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                                String fnacim = String.valueOf(sdf.format(date));
+                                
+                                data.addReport(fnacim, fields[0] ,book[0], "0");
                                 break;
                             }
                             x++;

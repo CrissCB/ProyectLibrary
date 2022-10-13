@@ -1,3 +1,9 @@
+/*
+* Cristian Camilo Burgos        221034036
+* Jimena Catalina Cabrera      221034027
+* Eliana Jackeline Zambrano   221034037
+*/
+
 package library;
 
 import java.beans.PropertyVetoException;
@@ -18,6 +24,7 @@ public class Main extends javax.swing.JFrame {
         data.loadStudent();
         data.loadBook();
         data.loadMagazine();
+        data.loadReport();
         initComponents();
     }
 
@@ -419,20 +426,20 @@ public class Main extends javax.swing.JFrame {
     //--------------------------------------------------------------------------
     private void deleteMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame delete = new Delete_Magazine(this, data);
-        waterfall(delete, evt);
+        JInternalFrame search = new Search_Magazine(this, data);
+        waterfall(search, evt);
     }//GEN-LAST:event_deleteMagazineActionPerformed
     //--------------------------------------------------------------------------
     private void searchMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame search = new Search_Magazine(this, data);
-        waterfall(search, evt);
+        JInternalFrame set = new Modify_Magazine(this, data);
+        waterfall(set, evt);
     }//GEN-LAST:event_searchMagazineActionPerformed
     //--------------------------------------------------------------------------
     private void setMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setMagazineActionPerformed
         // TODO add your handling code here:
-        JInternalFrame modify = new Modify_Magazine(this, data);
-        waterfall(modify, evt);
+        JInternalFrame delete = new Delete_Magazine(this, data);
+        waterfall(delete, evt);
     }//GEN-LAST:event_setMagazineActionPerformed
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -461,6 +468,7 @@ public class Main extends javax.swing.JFrame {
         data.saveStudent();
         data.saveMagazine();
         data.saveBook();
+        data.saveReport();
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
